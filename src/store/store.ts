@@ -16,4 +16,4 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const apiUrl = 'http://myaidkit.ru:1323/api/v1'
+export const apiUrl = 'http://myaidkit.ru:1323/api/v1';

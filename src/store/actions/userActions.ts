@@ -13,7 +13,13 @@ export const registration = (user) => {
         try {
             dispatch(authActionLoading(true));
 
-            const res = await axios.post(`${apiUrl}/signup`, user);
+            const res = await axios({
+                    baseURL: apiUrl,
+                    url: '/signup',
+                    method: 'POST',
+                    data: user,
+                    headers: {'credentials': 'include'}
+            });
 
             return res.data.message;
         } catch (error) {
@@ -35,7 +41,13 @@ export const login = (user) => {
         try {
             dispatch(authActionLoading(true));
 
-            const res = await axios.post(`${apiUrl}/login`, user);
+            const res = await axios({
+                baseURL: apiUrl,
+                url: '/login',
+                method: 'POST',
+                data: user,
+                headers: {'credentials': 'include'}
+            });
         } catch (error) {
             if (error.response.data.status === 401) {
                 return 401;
@@ -59,7 +71,12 @@ export const loadingProfile = () => {
         try {
             dispatch(authActionLoading(true));
 
-            const res = await axios.get(`${apiUrl}/profile`);
+            const res = await axios({
+                baseURL: apiUrl,
+                url: '/profile',
+                method: 'GET',
+                headers: {'credentials': 'include'}
+            });
 
             if (res.data.status === 200) {
                 dispatch(userActionName(res))

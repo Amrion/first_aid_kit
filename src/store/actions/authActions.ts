@@ -40,7 +40,12 @@ export const loginOrLogout = (auth, user?) => {
                 return;
             }
 
-            const res = await axios.delete(`${apiUrl}/logout`);
+            const res = await axios({
+                baseURL: apiUrl,
+                url: '/logout',
+                method: 'DELETE',
+                headers: {'credentials': 'include'}
+            });
 
             dispatch(authActionAuth(auth));
         } catch (error) {
