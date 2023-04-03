@@ -1,0 +1,58 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "GT Eesti Pro Display", sans-serif;
+	text-decoration: none;
+	color: var(--font-color);
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+	background: var(--back-color);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+	width: 0.4vw;
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+	border-radius: 20px;
+	background-color: var(--first-color);
+}
+
+#root {
+	position: relative;
+	width: 100%;
+	background: var(--back-color);
+	height: 100%;
+}
+
+:root {
+	--btn-info-color: linear-gradient(
+					121.9deg,
+					rgb(0 0 0 / 40%) 16.73%,
+					rgb(20 20 20 / 16.8%) 340.95%
+	);
+	--btn-info-hover-color: linear-gradient(
+					56.9deg,
+					rgb(0 0 0 / 40%) 456%,
+					rgb(20 20 20 / 16.8%) 16.73%
+	);
+	--font-first-span-color: grey;
+	--font-error-color: rgb(225, 61, 61);
+	--font-submit-color: green;
+	--second-color: #5A3BF4;
+	--first-color: #B36FF7;
+	--main-color: #d7cffc;
+	--font-color: #01090B;
+	--back-color: #F5F5F5;
+	--btn-color: linear-gradient(90deg, #B36FF7 -12.3%, #5A3BF4 93.57%);
+	--btn-color-hover: linear-gradient(90deg, #8853bd -12.3%, #412ab0 93.57%);
+}

@@ -1,0 +1,559 @@
+.back-profile {
+	filter: brightness(50%);
+	position: absolute;
+	bottom: 0;
+	z-index: 0;
+	top: 0;
+	left: 100px;
+	width: 100%;
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url("../../../public/static/authBack.webp");
+}
+
+.left-col-profile {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.right-col-profile {
+	align-items: end;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.profile-form-container {
+	padding: 30px 60px 30px 60px;
+	display: flex;
+	width: 800px;
+	flex-direction: column;
+	align-items: center;
+	height: auto;
+	background: white;
+	border-radius: 20px;
+}
+
+.prof-fam-form {
+	margin-left: 100px;
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	justify-content: center;
+}
+
+.profile-form {
+	width: 100%;
+}
+
+.profile-menu {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.under-profile {
+	text-align: center;
+	font-weight: lighter;
+	font-size: 20px;
+	margin-top: -20px;
+	margin-bottom: 50px;
+}
+
+.add-family {
+	width: 35%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px 40px 30px 40px;
+	background-color: white;
+	border-radius: 20px;
+	margin-left: 50px;
+}
+
+.add-family-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.my-family {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.person-profile {
+	position: relative;
+	transition: all 0.5s;
+	width: 220px;
+	margin-bottom: 10px;
+	padding: 10px 0 10px 10px;
+	border: 2px solid var(--first-color);
+	border-radius: 10px;
+	display: flex;
+}
+
+.person-profile:last-child {
+	margin-bottom:50px;
+}
+
+.person-photo {
+	width: 50px;
+	margin-right: 15px;
+	height: 50px;
+	border-radius: 50%;
+	background-size: cover;
+	background-position: center;
+}
+
+.person-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+}
+
+.person-name {
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.person-role {
+	font-weight: lighter;
+	color: grey;
+	margin-top: 5px;
+}
+
+.delete-profile {
+	opacity: 0;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.delete-profile:hover {
+	transform: scale(1.2);
+}
+
+.person-profile:hover .delete-profile {
+	opacity: 1;
+}
+
+@media (min-width: 1250px) and (max-width: 1600px) {
+	.profile-form-container {
+		padding: 15px 35px 15px 35px;
+		width: 700px;
+	}
+
+	.add-family {
+		margin-left: 30px;
+		padding: 15px 20px 15px 20px;
+	}
+
+	.under-profile {
+		margin-bottom: 25px;
+		font-size: 18px;
+	}
+
+	.log-h1 {
+		font-size: 32px;
+	}
+
+	.person-profile {
+		width: 180px;
+	}
+
+	.person-profile:last-child {
+		margin-bottom: 30px;
+	}
+
+
+	.person-photo {
+		margin-right: 10px;
+		width: 45px;
+		height: 45px;
+	}
+
+	.person-name {
+		font-size: 18px;
+	}
+
+	.person-role {
+		font-size: 14px;
+	}
+
+	.left-col-profile {
+		width: 45%;
+		margin-right: 30px;
+	}
+
+	.med-photo {
+		width: 170px;
+		height: 170px;
+	}
+
+	.med-photo-button {
+		width: 270px;
+		height: 46px;
+		font-size: 21px;
+	}
+
+	.checkbox.style-e .checkbox__body {
+		font-size: 18px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1250px) {
+	.prof-fam-form {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		padding: 30px 0 30px 0;
+	}
+
+	.back-profile {
+		height: auto;
+	}
+
+	.profile-form-container {
+		padding: 15px 35px 15px 35px;
+		width: 700px;
+		margin-bottom: 30px;
+	}
+
+	.add-family {
+		margin-left: 0;
+		width: 700px;
+		padding: 15px 30px 15px 30px;
+	}
+
+	.under-profile {
+		margin-bottom: 25px;
+		font-size: 18px;
+	}
+
+	.log-h1 {
+		font-size: 32px;
+	}
+
+	.my-family {
+		justify-content: center;
+	}
+
+	.person-profile {
+		margin-right: 20px;
+		width: 200px;
+	}
+
+	.person-photo {
+		margin-right: 10px;
+		width: 50px;
+		height: 50px;
+	}
+
+	.person-name {
+		font-size: 18px;
+	}
+
+	.person-role {
+		font-size: 14px;
+	}
+
+	.left-col-profile {
+		width: 45%;
+		margin-right: 30px;
+	}
+
+	.med-photo {
+		width: 170px;
+		height: 170px;
+	}
+
+	.med-photo-button {
+		width: 270px;
+		height: 46px;
+		font-size: 21px;
+	}
+
+	.checkbox.style-e .checkbox__body {
+		font-size: 18px;
+	}
+
+	.popUp {
+		padding: 30px;
+	}
+
+	.delete-btn-popup {
+		width: 35%;
+		font-size: 18px;
+	}
+
+	.cancel-btn-popup {
+		width: 35%;
+		font-size: 18px;
+	}
+
+	.attention-under {
+		font-size: 18px;
+	}
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+	.popUp {
+		padding: 20px;
+	}
+
+	.attention {
+		font-size: 22px;
+	}
+
+	.delete-btn-popup {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.cancel-btn-popup {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.attention-under {
+		font-size: 16px;
+	}
+
+	.prof-fam-form {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		padding: 30px 0 30px 0;
+	}
+
+	.back-profile {
+		height: auto;
+	}
+
+	.profile-form-container {
+		padding: 15px 35px 15px 35px;
+		max-width: 800px;
+		width: 85%;
+		margin-bottom: 30px;
+	}
+
+	.add-family {
+		width: 85%;
+		max-width: 800px;
+		margin-left: 0;
+		padding: 15px 30px 15px 30px;
+	}
+
+	.under-profile {
+		margin-bottom: 25px;
+		font-size: 17px;
+	}
+
+	.log-h1 {
+		font-size: 28px;
+	}
+
+	.my-family {
+		justify-content: center;
+	}
+
+	.person-profile {
+		margin-right: 20px;
+		width: 200px;
+	}
+
+	.person-profile:last-child {
+		margin-right: 0;
+		margin-bottom: 30px;
+	}
+
+	.right-col-profile {
+		width: 45%;
+	}
+
+	.person-photo {
+		margin-right: 10px;
+		width: 50px;
+		height: 50px;
+	}
+
+	.person-name {
+		font-size: 18px;
+	}
+
+	.person-role {
+		font-size: 14px;
+	}
+
+	.left-col-profile {
+		width: 45%;
+		margin-right: 30px;
+	}
+
+	.med-photo {
+		width: 170px;
+		height: 170px;
+	}
+
+	.photo-input {
+		width: 90%;
+	}
+
+	.med-photo-button {
+		width: 240px;
+		height: 40px;
+		font-size: 20px;
+	}
+
+	.checkbox.style-e .checkbox__body {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 750px) {
+	.popUp {
+		width: 70%;
+		padding: 10px;
+	}
+
+	.attention {
+		font-size: 18px;
+	}
+
+	.delete-btn-popup {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.popup-btns {
+		width: 90%;
+	}
+
+	.cancel-btn-popup {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.attention-under {
+		font-size: 16px;
+	}
+
+	.prof-fam-form {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		padding: 90px 0 30px 0;
+	}
+
+	.back-profile {
+		height: auto;
+	}
+
+	.profile-form-container {
+		padding: 15px 20px 15px 20px;
+		max-width: 800px;
+		width: 92%;
+		margin-bottom: 30px;
+	}
+
+	.add-family {
+		width: 92%;
+		max-width: 800px;
+		margin-left: 0;
+		padding: 15px 20px 15px 20px;
+	}
+
+	.under-profile {
+		margin-bottom: 15px;
+		font-size: 15px;
+	}
+
+	.log-h1 {
+		margin-bottom: 30px;
+		text-align: center;
+		font-size: 24px;
+	}
+
+	.my-family {
+		justify-content: center;
+	}
+
+	.person-profile {
+		margin-right: 0;
+		width: 200px;
+	}
+
+	.person-profile:first-child {
+		margin-top: 10px;
+	}
+
+	.person-profile:last-child {
+		margin-bottom: 30px;
+	}
+
+	.right-col-profile {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 30px;
+	}
+
+	.person-photo {
+		margin-right: 10px;
+		width: 50px;
+		height: 50px;
+	}
+
+	.profile-menu {
+		flex-direction: column-reverse;
+	}
+
+	.person-name {
+		font-size: 18px;
+	}
+
+	.person-role {
+		font-size: 14px;
+	}
+
+	.left-col-profile {
+		width: 100%;
+		margin-right: 30px;
+	}
+
+	.med-photo {
+		margin-bottom: 20px;
+		width: 150px;
+		height: 150px;
+	}
+
+	.photo-input {
+		width: 90%;
+	}
+
+	.med-photo-button {
+		width: 100%;
+		height: 35px;
+		font-size: 16px;
+	}
+
+	.checkbox.style-e .checkbox__body {
+		font-size: 16px;
+	}
+}
+

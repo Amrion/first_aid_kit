@@ -1,0 +1,118 @@
+.calendar {
+	margin: 40px 100px 40px 200px;
+}
+
+.calendar-h1 {
+	display: flex;
+	align-items: center;
+	font-size: 27px;
+	margin-bottom: 20px;
+}
+
+.day {
+	margin-bottom: 20px;
+	width: 100%;
+	padding: 20px;
+	height: 70vh;
+	border: 2px solid var(--first-color);
+	border-radius: 20px;
+}
+
+.day__time {
+	padding-bottom: 5px;
+	font-weight: lighter;
+	font-size: 24px;
+	border-bottom: 2px solid var(--main-color);
+}
+
+.select {
+	font-family: "GT Eesti Pro Display", arial, sans-serif;
+	width: 300px;
+	height: 35px;
+	font-size: 20px;
+	font-weight: 500;
+	border-radius: 10px;
+	background-color: var(--back-color);
+	margin-left: 10px;
+	outline: none;
+	border: 2px solid lightgray;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg width='25px' height='25px' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23B36FF7' d='M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8 316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	padding-left: 10px;
+}
+
+.select:focus-visible {
+	border: 2px solid var(--first-color) !important;
+}
+
+@media (min-width: 1150px) and (max-width: 1400px) {
+	.calendar {
+		margin-left: 135px;
+		margin-right: 55px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1150px) {
+	.calendar {
+		margin-left: 115px;
+		margin-right: 35px;
+	}
+
+	.calendar-h1 {
+		font-size: 25px;
+	}
+
+	.select {
+		font-size: 19px;
+	}
+
+	.day__time {
+		font-size: 22px;
+	}
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+	.calendar {
+		margin-left: 100px;
+		margin-right: 25px;
+	}
+
+	.calendar-h1 {
+		font-size: 23px;
+	}
+
+	.select {
+		width: 250px;
+		font-size: 18px;
+	}
+
+	.day__time {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 750px) {
+	.calendar {
+		margin-top: 0;
+		padding-top: 100px;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+
+	.calendar-h1 {
+		text-align: center;
+		flex-direction: column;
+		font-size: 22px;
+	}
+
+	.select {
+		font-size: 17px;
+		margin-top: 10px;
+	}
+
+	.day__time {
+		font-size: 18px;
+	}
+}

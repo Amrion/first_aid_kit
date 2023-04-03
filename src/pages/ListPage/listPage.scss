@@ -1,0 +1,97 @@
+$margin-right: calc((100% - (250px * 5)) / 4);
+
+.list-page {
+	margin: 20px 100px 0 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.list-container {
+	margin-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: $margin-right;
+}
+
+@media (min-width: 1400px) and (max-width: 1700px) {
+	$margin-right: calc((100% - (230px * 4)) / 3);
+
+	.list-container {
+		column-gap: $margin-right;
+	}
+}
+
+@media (min-width: 1150px) and (max-width: 1400px) {
+	$margin-right: calc((100% - (200px * 4)) / 3);
+
+	.list-container {
+		margin-top: 20px;
+		column-gap: $margin-right;
+	}
+
+	.list-page {
+		margin-left: 130px;
+		margin-right: 55px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1150px) {
+	$margin-right: calc((100% - (180px * 4)) / 3);
+
+	.list-container {
+		margin-top: 0;
+		column-gap: $margin-right;
+	}
+
+	.list-page {
+		margin-left: 110px;
+		margin-right: 35px;
+	}
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+	$margin-right: calc((100% - (185px * 3)) / 2);
+
+	.list-container {
+		margin-top: 0;
+		column-gap: $margin-right;
+	}
+
+	.list-page {
+		margin-left: 100px;
+		margin-right: 25px;
+	}
+}
+
+@media (min-width: 550px) and (max-width: 750px) {
+	$margin-right: calc((100% - (155px * 3)) / 2);
+
+	.list-container {
+		margin-top: 0;
+		column-gap: $margin-right;
+	}
+
+	.list-page {
+		padding-top: 80px;
+		margin-top: 0;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}
+
+@media (max-width: 550px) {
+	$margin-right: calc((100% - (165px * 2)) / 1);
+
+	.list-container {
+		margin-top: 0;
+		column-gap: $margin-right;
+	}
+
+	.list-page {
+		padding-top: 80px;
+		margin-top: 0;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}

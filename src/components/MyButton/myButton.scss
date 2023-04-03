@@ -1,0 +1,30 @@
+.my-button {
+	font-weight: lighter;
+	font-family: GT Eesti Pro Display, arial, sans-serif;
+	color: white;
+	border: 0;
+	cursor: pointer;
+	background: var(--btn-color);
+	mix-blend-mode: normal;
+	border-radius: 10px;
+	z-index: 11;
+	transition: transform 0.1s ease-out, background-color 0.15s linear;
+}
+
+@mixin transform($scale) {
+	-webkit-transform: $scale;
+	transform: $scale;
+}
+
+.my-button:active {
+	@include transform(scale(0.94));
+}
+
+.my-button:hover {
+	background: var(--btn-color-hover);
+}
+
+.btn-link {
+	text-decoration: none;
+	color: white;
+}

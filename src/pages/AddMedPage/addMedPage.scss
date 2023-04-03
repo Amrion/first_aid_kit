@@ -1,0 +1,571 @@
+.addmed-container {
+	margin: 20px 100px 50px 200px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.addmed-h1 {
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+.addmed-form {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	margin-top: 30px;
+	align-items: center;
+	padding: 20px 50px 20px 50px;
+	height: fit-content;
+	border-radius: 10px;
+	border: 2px solid var(--second-color);
+}
+
+.add-photo-med-first {
+	font-weight: lighter;
+	font-size: 20px;
+}
+
+.add-photo-med-second {
+	margin-top: 10px;
+	font-weight: lighter;
+	font-size: 20px;
+}
+
+.photo-row {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.photo-input {
+	justify-content: center;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.photo-input-name {
+	padding-right: 50px;
+	justify-content: end;
+	width: 30%;
+	font-weight: lighter;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.med-photo {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	margin-bottom: 30px;
+	object-fit: cover;
+}
+
+.photo-input-med {
+	margin-top: 40px;
+	display: none;
+}
+
+.med-photo-button {
+	border: 0;
+	font-family: "GT Eesti Pro Display", arial, sans-serif;
+	display: flex;
+	font-weight: lighter;
+	font-size: 22px;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	width: 300px;
+	text-align: center;
+	height: 50px;
+	mix-blend-mode: normal;
+	background: var(--btn-info-color);
+	border-radius: 10px;
+	transition: transform 0.1s ease-out, background-color 0.15s linear;
+}
+
+.med-photo-button:hover {
+	background: var(--btn-info-hover-color);
+}
+
+.med-photo-button:active {
+	transform: scale(0.94);
+}
+
+.name-row {
+	margin-top: 50px;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.name-input-name {
+	padding-right: 50px;
+	width: 30%;
+	justify-content: end;
+	font-weight: lighter;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.name-input {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+}
+
+.name-input-med {
+	font-family: "GT Eesti Pro Display", arial, sans-serif;
+	font-weight: lighter;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 10px;
+	outline: none;
+	border: 2px solid var(--first-color);
+	height: 50px;
+	width: 300px;
+	transition: all 0.5s;
+}
+
+.name-input-med:focus {
+	border: 2px solid var(--second-color);
+}
+
+.input-med-error {
+	border: 2px solid var(--font-error-color);
+}
+
+.type-row {
+	margin-bottom: 50px;
+	margin-top: 50px;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.type-input-name {
+	padding-right: 50px;
+	width: 30%;
+	justify-content: end;
+	font-weight: lighter;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.type-input {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+}
+
+.type-input-label {
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+}
+
+.checkbox.style-e {
+	display: inline-block;
+	position: relative;
+	padding-left: 50px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.checkbox.style-e:first-child {
+	margin-bottom: 20px;
+}
+
+.checkbox.style-e input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+.checkbox.style-e input:checked ~ .checkbox__checkmark {
+	background-color: var(--first-color);
+}
+.checkbox.style-e input:checked ~ .checkbox__checkmark:after {
+	left: 21px;
+}
+.checkbox.style-e:hover input ~ .checkbox__checkmark {
+	background-color: lightgray;
+}
+.checkbox.style-e:hover input:checked ~ .checkbox__checkmark {
+	background-color:  var(--first-color);
+}
+.checkbox.style-e .checkbox__checkmark {
+	position: absolute;
+	top: 1px;
+	left: 0;
+	height: 24px;
+	width: 42px;
+	background-color: lightgray;
+	transition: background-color 0.25s ease;
+	border-radius: 11px;
+}
+.checkbox.style-e .checkbox__checkmark:after {
+	content: "";
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	width: 18px;
+	height: 18px;
+	display: block;
+	background-color: #fff;
+	border-radius: 50%;
+	transition: left 0.25s ease;
+}
+.checkbox.style-e .checkbox__body {
+	margin-left: 10px;
+	color: var(--font-color);
+	line-height: 1.4;
+	font-size: 20px;
+	transition: color 0.25s ease;
+}
+
+.checkbox-error {
+	background-color: var(--font-error-color) !important;
+}
+
+.rem-row {
+	margin-bottom: 50px;
+	opacity: 1;
+	transition: all 0.5s;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.rem-row-hidden {
+	opacity: 0;
+	position: absolute;
+	left: -99999px;
+}
+
+.rem-input-name {
+	padding-right: 50px;
+	width: 30%;
+	justify-content: end;
+	font-weight: lighter;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+}
+
+@media (min-width: 1600px) and (max-width: 1700px) {
+	.addmed-form {
+		width: 50%;
+	}
+}
+
+@media (min-width: 1400px) and (max-width: 1600px) {
+	.addmed-h1 {
+		font-size: 32px;
+	}
+
+	.addmed-form {
+		width: 50%;
+	}
+
+	.name-input-med {
+		width: 273px;
+		height: 45px;
+		font-size: 21px;
+	}
+
+	.name-input-med::placeholder {
+		font-size: 18px;
+	}
+
+	.type-input-label {
+		width: 270px;
+	}
+}
+
+@media (min-width: 1150px) and (max-width: 1400px) {
+	.addmed-container {
+		margin-left: 130px;
+		margin-right: 55px;
+	}
+
+	.addmed-h1 {
+		font-size: 32px;
+	}
+
+	.addmed-form {
+		margin-top: 30px;
+		width: 60%;
+	}
+
+	.photo-input-name {
+		font-size: 19px;
+	}
+
+	.name-input-name {
+		font-size: 19px;
+	}
+
+	.type-input-name {
+		font-size: 19px;
+	}
+
+	.rem-input-name {
+		font-size: 19px;
+	}
+
+	.name-input-med {
+		width: 273px;
+		height: 45px;
+		font-size: 21px;
+	}
+
+	.name-input-med::placeholder {
+		font-size: 18px;
+	}
+
+	.type-input-label {
+		width: 270px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1150px) {
+	.addmed-container {
+		margin-left: 110px;
+		margin-right: 35px;
+	}
+
+	.addmed-h1 {
+		font-size: 28px;
+	}
+
+	.add-photo-med-first {
+		font-size: 18px;
+	}
+
+	.add-photo-med-second {
+		font-size: 18px;
+	}
+
+	.addmed-photo {
+		width: 150px !important;
+		height: 150px !important;
+	}
+
+	.addmed-btn {
+		font-size: 19px !important;
+		height: 45px !important;
+		width: 240px !important;
+	}
+
+	.addmed-form {
+		margin-top: 30px;
+		width: 70%;
+	}
+
+	.photo-input-name {
+		font-size: 19px;
+	}
+
+	.name-input-name {
+		font-size: 19px;
+	}
+
+	.type-input-name {
+		font-size: 19px;
+	}
+
+	.rem-input-name {
+		font-size: 19px;
+	}
+
+	.name-input-med {
+		width: 244px;
+		height: 45px;
+		font-size: 19px;
+	}
+
+	.name-input-med::placeholder {
+		font-size: 18px;
+	}
+
+	.type-input-label {
+		width: 240px;
+	}
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+	.addmed-container {
+		margin-left: 100px;
+		margin-right: 25px;
+	}
+
+	.addmed-input {
+		width: 70% !important;
+	}
+
+	.addmed-h1 {
+		font-size: 25px;
+	}
+
+	.add-photo-med-first {
+		font-size: 17px;
+	}
+
+	.add-photo-med-second {
+		font-size: 17px;
+	}
+
+	.addmed-photo {
+		width: 140px !important;
+		height: 140px !important;
+	}
+
+	.addmed-btn {
+		font-size: 18px !important;
+		height: 43px !important;
+		width: 220px !important;
+	}
+
+	.addmed-form {
+		padding-left: 30px;
+		padding-right: 30px;
+		margin-top: 30px;
+		width: 80%;
+	}
+
+	.photo-input-name {
+		font-size: 18px;
+	}
+
+	.name-input-name {
+		font-size: 18px;
+	}
+
+	.type-input-name {
+		font-size: 18px;
+	}
+
+	.rem-input-name {
+		font-size: 18px;
+	}
+
+	.name-input-med {
+		width: 224px;
+		height: 43px;
+		font-size: 18px;
+	}
+
+	.name-input-med::placeholder {
+		font-size: 17px;
+	}
+
+	.type-input-label {
+		width: 220px;
+	}
+}
+
+@media (max-width: 750px) {
+	.addmed-container {
+		margin-top: 0;
+		padding-top: 100px;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+
+	.addmed-input {
+		width: 70% !important;
+	}
+
+	.addmed-h1 {
+		text-align: center;
+		font-size: 23px;
+	}
+
+	.add-photo-med-first {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	.add-photo-med-second {
+		text-align: center;
+		font-size: 16px;
+	}
+
+	.addmed-photo {
+		width: 140px !important;
+		height: 140px !important;
+	}
+
+	.addmed-btn {
+		font-size: 18px !important;
+		height: 40px !important;
+		width: 170px !important;
+	}
+
+	.addmed-form {
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 30px;
+		width: 100%;
+	}
+
+	.photo-input-name {
+		padding-right: 10px;
+		font-size: 16px;
+	}
+
+	.checkbox.style-e .checkbox__checkmark:after {
+		width: 16px;
+		height: 16px;
+	}
+
+	.checkbox.style-e .checkbox__checkmark {
+		height: 22px;
+		width: 39px;
+	}
+
+	.name-input-name {
+		padding-right: 10px;
+		font-size: 16px;
+	}
+
+	.rem-input-name {
+		padding-right: 10px;
+		font-size: 16px;
+	}
+
+	.type-input-name {
+		padding-right: 10px;
+		font-size: 16px;
+	}
+
+	.name-input-med {
+		width: 173px;
+		height: 40px;
+		font-size: 16px;
+	}
+
+	.name-input-med::placeholder {
+		font-size: 15px;
+	}
+
+	.type-input-label {
+		width: 170px;
+	}
+}
+
+
+
+
