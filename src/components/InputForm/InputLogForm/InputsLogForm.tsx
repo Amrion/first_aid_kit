@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import '../inputForm.scss';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import MyButton from "../../MyButton/MyButton";
 import MyInput from "../MyInput";
 import {textErrors} from "../utils/textError";
@@ -27,6 +27,8 @@ const InputsLogForm: FC = () => {
 
     const dispatch = useAppDispatch();
     const {isLoading, isError} = useAppSelector(state => state.auth);
+
+    const nav = useNavigate();
 
     useEffect(() => {
         return () => {
@@ -114,7 +116,11 @@ const InputsLogForm: FC = () => {
             password: valuePass
         }
 
-        await dispatch(loginOrLogout(true, tempUser));
+        const res = await dispatch(loginOrLogout(true, tempUser));
+
+        if (res === true) {
+            nav('/');
+        }
     }
 
     return (

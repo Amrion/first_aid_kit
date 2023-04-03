@@ -17,6 +17,8 @@ const Navbar: FC = () => {
 
     const loc = useLocation();
 
+    const nav = useNavigate();
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -77,7 +79,11 @@ const Navbar: FC = () => {
     }
 
     const logout = async () => {
-        await dispatch(loginOrLogout(false));
+        const res = await dispatch(loginOrLogout(false));
+
+        if (res === 200) {
+            nav('/info');
+        }
     }
 
     return (

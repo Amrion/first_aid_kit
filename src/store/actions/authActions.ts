@@ -37,7 +37,7 @@ export const loginOrLogout = (auth, user?) => {
 
                 dispatch(authActionAuth(auth));
 
-                return;
+                return true;
             }
 
             const res = await axios({
@@ -49,6 +49,8 @@ export const loginOrLogout = (auth, user?) => {
             });
 
             dispatch(authActionAuth(auth));
+
+            return res.data.status;
         } catch (error) {
             if (error === 400) {
                 dispatch(authActionError('Такая почта уже зарегистрирована'));
