@@ -51,11 +51,7 @@ export const login = (user) => {
                 withCredentials: true
             });
 
-            dispatch(userActionName(res.data.user.name))
-            dispatch(userActionSurname(res.data.user.surname))
-            dispatch(userActionEmail(res.data.user.email))
-            dispatch(userActionAge(res.data.user.date))
-            dispatch(userActionPhoto(res.data.user.photo))
+            dispatch(loadingProfile())
         } catch (error) {
             if (error.response.data.status === 401) {
                 return 401;
