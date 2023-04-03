@@ -328,7 +328,7 @@ const InputsRegForm: FC = () => {
             name: valueName,
             surname: valueSurName,
             email: valueEmail,
-            age: valueAge,
+            date: valueAge,
             password: valuePass
         }
 

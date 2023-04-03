@@ -5,7 +5,7 @@ const defaultState: UserState = {
     surname: '',
     email: '',
     age: '',
-    password: '',
+    photo: '',
 }
 
 export const UserReducer = (state = defaultState, action: UserActions): UserState => {
@@ -22,8 +22,8 @@ export const UserReducer = (state = defaultState, action: UserActions): UserStat
         case UserActionEnum.SET_AGE: {
             return {...state, age: action.payload}
         }
-        case UserActionEnum.SET_PASSWORD: {
-            return {...state, password: action.payload}
+        case UserActionEnum.SET_PHOTO: {
+            return {...state, photo: action.payload}
         }
         default:
             return state;
@@ -58,9 +58,9 @@ export const userActionAge = (payload) => {
     }
 }
 
-export const userActionPassword = (payload) => {
+export const userActionPhoto = (payload) => {
     return {
-        type: UserActionEnum.SET_PASSWORD,
+        type: UserActionEnum.SET_PHOTO,
         payload
     }
 }

@@ -1,10 +1,10 @@
 import axios from "axios";
 import {apiUrl} from "../store";
-import {authActionLoading} from "../reducers/authReducer/authReducer";
+import {authActionAuth, authActionLoading} from "../reducers/authReducer/authReducer";
 import {
     userActionAge, userActionEmail,
     userActionName,
-    userActionPassword,
+    userActionPhoto,
     userActionSurname
 } from "../reducers/userReducer/userReducer";
 
@@ -82,11 +82,12 @@ export const loadingProfile = () => {
             });
 
             if (res.data.status === 200) {
-                dispatch(userActionName(res))
-                dispatch(userActionSurname(res))
-                dispatch(userActionEmail(res))
-                dispatch(userActionAge(res))
-                dispatch(userActionPassword(res))
+                dispatch(authActionAuth(true));
+                dispatch(userActionName(res.data.user.name))
+                dispatch(userActionSurname(res.data.user.surname))
+                dispatch(userActionEmail(res.data.user.email))
+                dispatch(userActionAge(res.data.user.date))
+                dispatch(userActionPhoto(res.data.user.photo))
 
                 return true
             }

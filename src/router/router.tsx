@@ -41,13 +41,6 @@ export const publicRoutes: IRoutes[] = [
     {path: RoutesNames.PROFILE, component: <ProfilePage/>},
     {path: RoutesNames.ERROR, component: <ErrorPage/>},
 
-    // {path: RoutesNames.ADDMED, component: <Navigate to={RoutesNames.INFO} replace />},
-    // {path: RoutesNames.MAIN, component: <Navigate to={RoutesNames.INFO} replace />},
-    // {path: RoutesNames.LIST, component: <Navigate to={RoutesNames.INFO} replace />},
-    // {path: RoutesNames.ONEMED, component: <Navigate to={RoutesNames.INFO} replace />},
-    // {path: RoutesNames.NOTIFY, component: <Navigate to={RoutesNames.INFO} replace />},
-    // {path: RoutesNames.PROFILE, component: <Navigate to={RoutesNames.INFO} replace />},
-
     {path: RoutesNames.ERROR, component: <Navigate to={RoutesNames.ERROR} replace />}
 ];
 
