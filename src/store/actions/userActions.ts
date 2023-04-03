@@ -18,7 +18,8 @@ export const registration = (user) => {
                     url: '/signup',
                     method: 'POST',
                     data: user,
-                    headers: {'credentials': 'include'}
+                    headers: {"Content-Type": "application/json"},
+                    withCredentials: true
             });
 
             return res.data.message;
@@ -46,7 +47,8 @@ export const login = (user) => {
                 url: '/login',
                 method: 'POST',
                 data: user,
-                headers: {'credentials': 'include'}
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true
             });
         } catch (error) {
             if (error.response.data.status === 401) {
@@ -75,7 +77,8 @@ export const loadingProfile = () => {
                 baseURL: apiUrl,
                 url: '/profile',
                 method: 'GET',
-                headers: {'credentials': 'include'}
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true
             });
 
             if (res.data.status === 200) {

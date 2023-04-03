@@ -44,7 +44,8 @@ export const loginOrLogout = (auth, user?) => {
                 baseURL: apiUrl,
                 url: '/logout',
                 method: 'DELETE',
-                headers: {'credentials': 'include'}
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true
             });
 
             dispatch(authActionAuth(auth));
