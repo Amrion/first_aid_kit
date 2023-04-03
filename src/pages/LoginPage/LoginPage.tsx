@@ -11,24 +11,21 @@ import Error500Page from "../Error500Page/Error500Page";
 const LoginPage: FC = () => {
     const nav = useNavigate();
 
-    const {isAuth} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
 
     useEffect(() => {
-        if (isAuth) {
-            dispatch(loadingProfile())
-                .then((res) => {
-                    if (res === true) {
-                        nav('/');
-                    }
+        dispatch(loadingProfile())
+            .then((res) => {
+                if (res === true) {
+                    nav('/');
+                }
 
-                    if (res === 500) {
-                        setError500(true);
-                    }
-                });
-        }
+                if (res === 500) {
+                    setError500(true);
+                }
+            });
 
         title.innerText = 'Вход';
 

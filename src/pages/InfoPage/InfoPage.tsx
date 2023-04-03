@@ -33,27 +33,23 @@ const InfoPage: FC = () => {
     const fourthLeft = useRef<HTMLDivElement>();
     const fourthRight = useRef<HTMLUListElement>();
 
-    const history = useNavigate();
+    const nav = useNavigate();
 
-    const {isAuth} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
 
     useEffect(() => {
-        if (isAuth) {
-            dispatch(loadingProfile())
-                .then((res) => {
-                    if (res === true) {
-                        history('/');
-                    }
+        dispatch(loadingProfile())
+            .then((res) => {
+                if (res === true) {
+                    nav('/');
+                }
 
-                    if (res === 500) {
-                        setError500(true);
-                    }
-                });
-        }
-
+                if (res === 500) {
+                    setError500(true);
+                }
+            });
         document.body.classList.add('scroll-hide');
         document.body.classList.add('disable');
 
@@ -194,7 +190,7 @@ const InfoPage: FC = () => {
     const toNextPage = (e) => {
         e.preventDefault();
 
-        history('/reg')
+        nav('/reg')
     }
 
     return (
