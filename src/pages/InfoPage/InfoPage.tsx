@@ -1,7 +1,12 @@
-import React, {FC, useEffect, useRef} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import './infoPage.scss'
 import MyButton from "../../components/MyButton/MyButton";
 import {useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../hooks/useAppSelector";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {loadingProfile} from "../../store/actions/userActions";
+import {title} from "../../models/Title/Title";
+import Error500Page from "../Error500Page/Error500Page";
 
 const InfoPage: FC = () => {
     const allBtns = useRef<HTMLDivElement>();
@@ -30,7 +35,25 @@ const InfoPage: FC = () => {
 
     const history = useNavigate();
 
+    const {isAuth} = useAppSelector(state => state.auth);
+    const dispatch = useAppDispatch();
+
+    const [error500, setError500] = useState(false);
+
     useEffect(() => {
+        if (isAuth) {
+            dispatch(loadingProfile())
+                .then((res) => {
+                    if (res === true) {
+                        history('/');
+                    }
+
+                    if (res === 500) {
+                        setError500(true);
+                    }
+                });
+        }
+
         document.body.classList.add('scroll-hide');
         document.body.classList.add('disable');
 
@@ -175,6 +198,8 @@ const InfoPage: FC = () => {
     }
 
     return (
+        !error500
+        ?
         <>
             <div ref={allBtns} onClick={(e) => navigation(e)} className="scroll-btns">
                 <div ref={firstBtn} className="info-btn info-btn-active"></div>
@@ -227,6 +252,8 @@ const InfoPage: FC = () => {
                 </section>
             </section>
         </>
+            :
+            <Error500Page/>
     );
 };
 

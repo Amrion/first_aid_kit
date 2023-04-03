@@ -1,6 +1,8 @@
 import React, {FC, useEffect, useRef} from 'react';
+import {useAppSelector} from "../../hooks/useAppSelector";
 
 const HelloInHeader: FC = () => {
+    const {surname} = useAppSelector(state => state.user);
     const time = useRef<HTMLDivElement>();
 
     useEffect(() =>{
@@ -33,7 +35,7 @@ const HelloInHeader: FC = () => {
     return (
         <div className='hello'>
             <div ref={time} className='name'></div>
-            <span className='name person'>Тарновский</span>
+            <span className='name person'>{surname}</span>
             <div className='wish'>Счастье - это крайняя форма здоровья</div>
         </div>
     );

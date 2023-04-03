@@ -29,7 +29,7 @@ export enum RoutesNames {
     ERROR = '*',
 }
 
-export const publicRoutes: IRoutes[] = [
+export const AllRoutes: IRoutes[] = [
     {path: RoutesNames.INFO, component: <InfoPage/>},
     {path: RoutesNames.LOGIN, component: <LoginPage/>},
     {path: RoutesNames.REG, component: <RegPage/>},
@@ -40,22 +40,6 @@ export const publicRoutes: IRoutes[] = [
     {path: RoutesNames.NOTIFY, component: <NotifyPage/>},
     {path: RoutesNames.PROFILE, component: <ProfilePage/>},
     {path: RoutesNames.ERROR, component: <ErrorPage/>},
-
-    {path: RoutesNames.ERROR, component: <Navigate to={RoutesNames.ERROR} replace />}
-];
-
-export const privateRoutes: IRoutes[] = [
-    {path: RoutesNames.MAIN, component: <MainPage/>},
-    {path: RoutesNames.ADDMED, component: <AddMedPage/>},
-    {path: RoutesNames.LIST, component: <ListPage/>},
-    {path: RoutesNames.ONEMED, component: <OneMedPage/>},
-    {path: RoutesNames.NOTIFY, component: <NotifyPage/>},
-    {path: RoutesNames.PROFILE, component: <ProfilePage/>},
-    {path: RoutesNames.ERROR, component: <ErrorPage/>},
-
-    {path: RoutesNames.INFO, component: <Navigate to={RoutesNames.MAIN} replace />},
-    {path: RoutesNames.REG, component:  <Navigate to={RoutesNames.MAIN} replace />},
-    {path: RoutesNames.LOGIN, component:  <Navigate to={RoutesNames.MAIN} replace />},
 
     {path: RoutesNames.ERROR, component: <Navigate to={RoutesNames.ERROR} replace />}
 ];

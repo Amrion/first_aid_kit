@@ -9,11 +9,12 @@ import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {loadingProfile} from "../../store/actions/userActions";
 import Error500Page from "../Error500Page/Error500Page";
 import {title} from "../../models/Title/Title";
+import Loader from "../../components/Loader/Loader";
 
 const ListPage: FC = () => {
     const nav = useNavigate();
 
-    const {isAuth} = useAppSelector(state => state.auth);
+    const {isAuth, isLoading} = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
@@ -40,6 +41,10 @@ const ListPage: FC = () => {
     }, [])
 
     return (
+        isLoading
+            ?
+            <Loader/>
+            :
         !error500
             ?
             <div className='list-page'>
