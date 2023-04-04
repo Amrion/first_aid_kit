@@ -154,7 +154,7 @@ const ProfilePage: FC = () => {
                             <label className="checkbox style-e">
                                 <input onChange={(e) => changeCheck(e)} checked={check} type="checkbox"/>
                                 <div className="checkbox__checkmark"></div>
-                                <div className="checkbox__body">Ребенок ?</div>
+                                <div className="checkbox__body">Ребенок?</div>
                             </label>
                             <div className='error'> {submitError} </div>
                             <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='22px' margin='0 0 0 0'> Пригласить </MyButton>

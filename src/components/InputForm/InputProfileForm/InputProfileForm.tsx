@@ -6,7 +6,10 @@ import MyInput from "../MyInput";
 import {textErrors} from "../utils/textError";
 import {regExp} from "../utils/regExp";
 
-import {user} from "../../../models/User/User";;
+import {user} from "../../../models/User/User";
+import {useAppSelector} from "../../../hooks/useAppSelector";
+
+;
 
 const InputsRegForm: FC = () => {
     const [submitError, setSubmitError] = useState<string>('');
@@ -42,7 +45,7 @@ const InputsRegForm: FC = () => {
     const [valueSecPass, setValueSecPass] = useState<string>('');
     const [errorSecPass, setErrorSecPass] = useState<string>('');
 
-    const [photo, setPhoto] = useState('/styles/myPhoto.jpg');
+    const [myPhoto, setMyPhoto] = useState('/styles/myPhoto.jpg');
 
     const elemName = useRef<HTMLDivElement>();
     const elemSurName = useRef<HTMLDivElement>();
@@ -51,12 +54,14 @@ const InputsRegForm: FC = () => {
     const elemPass = useRef<HTMLDivElement>();
     const elemSecPass = useRef<HTMLDivElement>();
 
+    const {name, surname, age, email, photo} = useAppSelector(state => state.user);
+
     useEffect(() => {
-        setValueName(user.name)
-        setValueSurName(user.surname)
-        setValueEmail(user.email)
-        setValueAge(user.date)
-        setValuePass(user.password)
+        setValueName(name)
+        setValueSurName(surname)
+        setValueEmail(email)
+        setValueAge(age)
+        setMyPhoto(photo)
     }, [])
 
     const changeBorderFocusName = () => {
@@ -271,7 +276,7 @@ const InputsRegForm: FC = () => {
     }
 
     const changePhoto = (e) => {
-        setPhoto(URL.createObjectURL(e.target.files[0]))
+        setMyPhoto(URL.createObjectURL(e.target.files[0]))
     }
 
     const submit = (e) => {
@@ -332,7 +337,7 @@ const InputsRegForm: FC = () => {
     return (
         <div className='profile-form-container'>
             <h1 className='log-h1'>Редактировать профиль</h1>
-            <div className='under-profile'>Повторите свой пароль для сохранения изменений</div>
+            <div className='under-profile'>Можете не вводить пароль, если только не хотите его поменять</div>
             <form className='profile-form' method='post' action='/' noValidate encType='application/json'>
                 <div className='profile-menu'>
                     <div className='left-col-profile'>
@@ -422,7 +427,7 @@ const InputsRegForm: FC = () => {
                     </div>
                     <div className='right-col-profile'>
                         <div className="photo-input">
-                            <img alt='Фотография лекарства' className='med-photo' src={photo}/>
+                            <img alt='Фотография лекарства' className='med-photo' src={myPhoto}/>
                             <input onChange={(e) => changePhoto(e)} className='photo-input-med' type='file' id='photo' accept='mage/png, image/jpg, image/webp'/>
                             <label className='med-photo-button' htmlFor='photo'> Загрузить фото </label>
                         </div>

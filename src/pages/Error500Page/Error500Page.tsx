@@ -35,9 +35,9 @@ const Error500Page: FC = () => {
                 {
                     isAuth
                         ?
-                        <Link className='error-link' to='/'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/'> Просим прощения! Вернитесь позже </Link>
                         :
-                        <Link className='error-link' to='/info'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/info'> Просим прощения! Вернитесь позже </Link>
                 }
             </MyButton>
             <MyButton size='small-desktop-log' width='500px' height='55px' fontSize='22px' margin='20px 0 0 0'>
@@ -53,18 +53,18 @@ const Error500Page: FC = () => {
                 {
                     isAuth
                         ?
-                        <Link className='error-link' to='/'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/'> Просим прощения! Вернитесь позже </Link>
                         :
-                        <Link className='error-link' to='/info'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/info'> Просим прощения! Вернитесь позже </Link>
                 }
             </MyButton>
             <MyButton size='mobile-log' width='100%' height='45px' fontSize='18px' margin='20px 0 0 0'>
                 {
                     isAuth
                         ?
-                        <Link className='error-link' to='/'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/'> Просим прощения! Вернитесь позже </Link>
                         :
-                        <Link className='error-link' to='/info'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/info'> Просим прощения! Вернитесь позже </Link>
                 }
             </MyButton>
         </div>
