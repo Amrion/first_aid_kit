@@ -44,9 +44,9 @@ const Error500Page: FC = () => {
                 {
                     isAuth
                         ?
-                        <Link className='error-link' to='/'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/'> Просим прощения! Вернитесь позже </Link>
                         :
-                        <Link className='error-link' to='/info'> Вернуться на главную страницу </Link>
+                        <Link className='error-link' to='/info'> Просим прощения! Вернитесь позже </Link>
                 }
             </MyButton>
             <MyButton size='ipad-log' width='400px' height='50px' fontSize='20px' margin='20px 0 0 0'>

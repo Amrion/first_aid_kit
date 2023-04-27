@@ -10,6 +10,7 @@ import ListPage from "../pages/ListPage/ListPage";
 import OneMedPage from "../pages/OneMedPage/OneMedPage";
 import NotifyPage from "../pages/NotifyPage/NotifyPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import AddFamilyPage from "../pages/AddFamilyPage/AddFamilyPage";
 
 export interface IRoutes {
     path: string;
@@ -26,6 +27,7 @@ export enum RoutesNames {
     NOTIFY = '/notify',
     ONEMED = '/list/:id',
     PROFILE = '/profile',
+    ADDFAMILY = '/addfamily',
     ERROR = '*',
 }
 
@@ -39,7 +41,8 @@ export const AllRoutes: IRoutes[] = [
     {path: RoutesNames.ONEMED, component: <OneMedPage/>},
     {path: RoutesNames.NOTIFY, component: <NotifyPage/>},
     {path: RoutesNames.PROFILE, component: <ProfilePage/>},
+    {path: RoutesNames.ADDFAMILY, component: <AddFamilyPage/>},
     {path: RoutesNames.ERROR, component: <ErrorPage/>},
 
-    {path: RoutesNames.ERROR, component: <Navigate to={RoutesNames.ERROR} replace />}
+    {path: RoutesNames.ERROR, component: <Navigate to={RoutesNames.ERROR} replace/>}
 ];

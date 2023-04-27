@@ -1,7 +1,15 @@
 import {authActionAuth, authActionError} from "../reducers/authReducer/authReducer";
 import {login, registration} from "./userActions";
 import axios from "axios";
-import {apiUrl} from "../store";
+import {apiUrl, localUrl} from "../store";
+import {
+    userActionAdult,
+    userActionAge,
+    userActionEmail, userActionId, userActionList,
+    userActionMain,
+    userActionName, userActionNullList, userActionPhoto,
+    userActionSurname
+} from "../reducers/userReducer/userReducer";
 
 export const loginOrLogout = (auth, user?) => {
     return async (dispatch) => {
@@ -41,7 +49,7 @@ export const loginOrLogout = (auth, user?) => {
             }
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/logout',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -49,6 +57,15 @@ export const loginOrLogout = (auth, user?) => {
             });
 
             dispatch(authActionAuth(auth));
+            dispatch(userActionName(''));
+            dispatch(userActionId(0));
+            dispatch(userActionSurname(''));
+            dispatch(userActionEmail(''));
+            dispatch(userActionAge(''));
+            dispatch(userActionMain(false));
+            dispatch(userActionAdult(true));
+            dispatch(userActionPhoto(''));
+            dispatch(userActionNullList([]));
 
             return res.data.status;
         } catch (error) {

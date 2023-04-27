@@ -5,10 +5,12 @@ import {regExp} from "../../components/InputForm/utils/regExp";
 import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {loadingProfile} from "../../store/actions/userActions";
+import {addPersonFamily, loadingProfile} from "../../store/actions/userActions";
 import Error500Page from "../Error500Page/Error500Page";
 import {title} from "../../models/Title/Title";
 import Loader from "../../components/Loader/Loader";
+import {addOneMed, getListMed} from "../../store/actions/medActions";
+import MiniLoader from "../../components/MiniLoader/MiniLoader";
 
 const AddMedPage: FC = () => {
     const [photo, setPhoto] = useState('/styles/medPhoto.webp');
@@ -17,6 +19,7 @@ const AddMedPage: FC = () => {
     const [checkSecond, setCheckSecond] = useState(false);
     const [kol, setKol] = useState('');
     const [submitError, setSubmitError] = useState('');
+    const [avatar, setAvatar] = useState('');
 
     const refName = useRef<HTMLInputElement>();
     const refCheckFirst = useRef<HTMLInputElement>();
@@ -26,7 +29,8 @@ const AddMedPage: FC = () => {
     const refError = useRef<HTMLDivElement>();
 
     const changePhoto = (e) => {
-        setPhoto(URL.createObjectURL(e.target.files[0]))
+        setPhoto(URL.createObjectURL(e.target.files[0]));
+        setAvatar(e.target.files[0]);
     }
 
     const changeName = (e) => {
@@ -81,7 +85,7 @@ const AddMedPage: FC = () => {
     }
 
     const changeKol = (e) => {
-        setKol(e.target.value)
+        setKol(e.target.value);
 
         if (refError.current.classList.length === 3) {
             refError.current.classList.remove('error-active-submit');
@@ -94,7 +98,7 @@ const AddMedPage: FC = () => {
         }
     }
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
 
         if (name.length === 0) {
@@ -118,7 +122,7 @@ const AddMedPage: FC = () => {
 
         if (!checkFirst && !checkSecond) {
             refError.current.classList.add('error-active');
-            setSubmitError('Выберет тип лекарства');
+            setSubmitError('Выберите тип лекарства');
             refCheckFirst.current.classList.add('checkbox-error');
             refCheckSecond.current.classList.add('checkbox-error');
 
@@ -127,7 +131,7 @@ const AddMedPage: FC = () => {
 
         if (checkFirst && checkSecond) {
             refError.current.classList.add('error-active');
-            setSubmitError('Выберет только один тип');
+            setSubmitError('Выберите только один тип');
             refCheckFirst.current.classList.add('checkbox-error');
             refCheckSecond.current.classList.add('checkbox-error');
 
@@ -135,6 +139,14 @@ const AddMedPage: FC = () => {
         }
 
         if (checkFirst && kol.length === 0) {
+            refError.current.classList.add('error-active');
+            setSubmitError('Введите количество таблеток');
+            refKolInput.current.classList.add('input-med-error');
+
+            return;
+        }
+
+        if (checkFirst && Number(kol) <= 0) {
             refError.current.classList.add('error-active');
             setSubmitError('Введите количество таблеток');
             refKolInput.current.classList.add('input-med-error');
@@ -153,6 +165,39 @@ const AddMedPage: FC = () => {
             return;
         }
 
+        let formData = new FormData();
+
+        if (avatar === '') {
+            formData.append('file', avatar);
+        }
+        formData.append('name', name);
+
+        if (checkFirst) {
+            formData.append('is_tablets', true.toString());
+            formData.append('count', kol);
+        }
+
+        if (checkSecond) {
+            formData.append('is_tablets', false.toString());
+            formData.append('count', '0');
+        }
+
+        const res = await dispatch(addOneMed(formData));
+
+        if (!res) {
+            refError.current.classList.add('error-active');
+            setSubmitError('Упс... Попробуйте позже');
+
+            return;
+        }
+
+        if (res === 400) {
+            refError.current.classList.add('error-active');
+            setSubmitError('Поддерживается только jpg и png');
+
+            return;
+        }
+
         setSubmitError('Лекарство добавлено!');
         refError.current.classList.add('error-active');
         refError.current.classList.add('error-active-submit');
@@ -161,6 +206,7 @@ const AddMedPage: FC = () => {
     const nav = useNavigate();
 
     const {isAuth, isLoading} = useAppSelector(state => state.auth);
+    const {medList} = useAppSelector(state => state.med);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
@@ -181,16 +227,16 @@ const AddMedPage: FC = () => {
                 });
         }
 
+        if (medList.length === 0) {
+            dispatch(getListMed());
+        }
+
         return () => {
             title.innerText = 'My Aid Kit';
         }
     }, [])
 
     return (
-        isLoading
-            ?
-            <Loader/>
-            :
         !error500
             ?
             <>
@@ -236,10 +282,34 @@ const AddMedPage: FC = () => {
                             </div>
                         </div>
                         <div ref={refError} className='error'> {submitError} </div>
-                        <MyButton size='desktop-log' submit={submit}  width='70%' height='50px' fontSize='25px' margin='10px 0 0 0'> Добавить </MyButton>
-                        <MyButton size='small-desktop-log' submit={submit}  width='70%' height='45px' fontSize='22px' margin='10px 0 0 0'> Добавить </MyButton>
-                        <MyButton size='ipad-log' submit={submit}  width='70%' height='40px' fontSize='20px' margin='0 0 0 0'> Добавить </MyButton>
-                        <MyButton size='mobile-log' submit={submit}  width='70%' height='38px' fontSize='18px' margin='0 0 0 0'> Добавить </MyButton>
+                        <MyButton size='desktop-log' submit={submit}  width='70%' height='50px' fontSize='25px' margin='0 0 0 0'> {
+                            isLoading
+                                ?
+                                <MiniLoader/>
+                                :
+                                'Добавить'
+                        } </MyButton>
+                        <MyButton size='small-desktop-log' submit={submit}  width='70%' height='45px' fontSize='22px' margin='0 0 0 0'> {
+                            isLoading
+                                ?
+                                <MiniLoader/>
+                                :
+                                'Добавить'
+                        } </MyButton>
+                        <MyButton size='ipad-log' submit={submit}  width='70%' height='40px' fontSize='20px' margin='0 0 0 0'> {
+                            isLoading
+                                ?
+                                <MiniLoader/>
+                                :
+                                'Добавить'
+                        } </MyButton>
+                        <MyButton size='mobile-log' submit={submit}  width='70%' height='38px' fontSize='18px' margin='0 0 0 0'> {
+                            isLoading
+                                ?
+                                <MiniLoader/>
+                                :
+                                'Добавить'
+                        } </MyButton>
                     </form>
                 </div>
             </>

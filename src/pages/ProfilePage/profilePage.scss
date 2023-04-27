@@ -9,7 +9,7 @@
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-image: url("../../../public/static/authBack.webp");
+	background-image: url("../../../public/static/profileBack.webp");
 }
 
 .left-col-profile {
@@ -86,7 +86,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
@@ -116,6 +116,7 @@
 }
 
 .person-info {
+	width: 52%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -123,6 +124,9 @@
 }
 
 .person-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 	font-weight: 500;
 	font-size: 20px;
 }
@@ -150,6 +154,30 @@
 
 .person-profile:hover .delete-profile {
 	opacity: 1;
+}
+
+.error-success {
+	color: var(--font-submit-color)
+}
+
+.under-family {
+	margin-top: 20px;
+	margin-bottom: 0 !important;
+}
+
+.under-family-link {
+	text-decoration: none;
+	color: blue;
+	font-weight: 500;
+}
+
+.under-family-link:hover {
+	text-decoration: underline;
+}
+
+.delete-family {
+	margin-top: 20px;
+	width: 70% !important;
 }
 
 @media (min-width: 1250px) and (max-width: 1600px) {
@@ -294,6 +322,10 @@
 
 	.popUp {
 		padding: 30px;
+	}
+
+	.person-profile:last-child {
+		margin-bottom: 20px;
 	}
 
 	.delete-btn-popup {

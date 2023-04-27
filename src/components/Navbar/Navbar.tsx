@@ -5,6 +5,7 @@ import HelloInHeader from "../HelloInHeader/HelloInHeader";
 import SearchInHeader from "../SearchInHeader/SearchInHeader";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {loginOrLogout} from "../../store/actions/authActions";
+import {useAppSelector} from "../../hooks/useAppSelector";
 
 const Navbar: FC = () => {
     const firstIcon = useRef<HTMLDivElement>();
@@ -20,6 +21,7 @@ const Navbar: FC = () => {
     const nav = useNavigate();
 
     const dispatch = useAppDispatch();
+    const {name, photo} = useAppSelector(state => state.user);
 
     useEffect(() => {
         if (loc.pathname === '/') {
@@ -97,10 +99,10 @@ const Navbar: FC = () => {
                     <SearchInHeader/>
                     <div className='header__profile'>
                         <Link title='Профиль' to='/profile'>
-                            <div style={{backgroundImage: "url(\"/styles/myPhoto.jpg\")"}} className='photo-profile-header'></div>
+                            <div style={{backgroundImage: `url(${photo})`}} className='photo-profile-header'></div>
                         </Link>
                         <Link title='Профиль' className='name-profile-header' to='/profile'>
-                            Даня
+                            {name}
                         </Link>
                     </div>
                 </div>

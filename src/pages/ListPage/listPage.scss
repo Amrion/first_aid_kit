@@ -8,10 +8,20 @@ $margin-right: calc((100% - (250px * 5)) / 4);
 }
 
 .list-container {
+	width: 100%;
 	margin-top: 30px;
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: $margin-right;
+}
+
+.link-list {
+	text-decoration: none;
+	color: #0057e7;
+}
+
+.link-list:hover {
+	text-decoration: underline;
 }
 
 @media (min-width: 1400px) and (max-width: 1700px) {

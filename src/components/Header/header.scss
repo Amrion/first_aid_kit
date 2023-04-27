@@ -14,7 +14,7 @@
 
 .name {
 	display: inline;
-	font-size: 40px;
+	font-size: 38px;
 	font-weight: lighter;
 }
 
@@ -58,7 +58,6 @@
 }
 
 .search-input {
-
 	font-family: "GT Eesti Pro Display", arial, sans-serif;
 	font-weight: lighter;
 	opacity: 1;
@@ -66,7 +65,7 @@
 	width: 100%;
 	height: 60px;
 	font-size: 20px;
-	border-radius: 20px;
+	border-radius: 15px;
 	transition: all 0.5s;
 	outline: none;
 	border: 2px solid var(--first-color);
@@ -134,10 +133,13 @@
 }
 
 .name-profile-header {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 55%;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	font-size: 19px;
+	font-size: 18px;
 	color: #01090B;
 	text-decoration: none;
 }
@@ -162,6 +164,10 @@
 }
 
 @media (min-width: 1400px) and (max-width: 1700px) {
+	.photo-search {
+		top: 9px
+	}
+
 	.search {
 		padding: 0 40px 0 40px;
 	}
@@ -171,7 +177,7 @@
 	}
 
 	.name {
-		font-size: 30px;
+		font-size: 28px;
 	}
 
 	.search-input {
@@ -188,6 +194,12 @@
 }
 
 @media (min-width: 1150px) and (max-width: 1400px) {
+	.photo-search {
+		width: 33px;
+		height: 33px;
+		top: 8px;
+	}
+
 	.search {
 		padding: 0 20px 0 40px;
 	}
@@ -197,7 +209,7 @@
 	}
 
 	.name-profile-header {
-		height: 17px;
+		height: 16px;
 	}
 
 	.head-page {
@@ -207,7 +219,7 @@
 	}
 
 	.name {
-		font-size: 26px;
+		font-size: 24px;
 	}
 
 	.search-icon {
@@ -229,9 +241,24 @@
 	.wish {
 		font-size: 18px;
 	}
+
+	.search-input::placeholder {
+		font-size: 16px;
+	}
+
 }
 
 @media (min-width: 1000px) and (max-width: 1150px) {
+	.search-input::placeholder {
+		font-size: 14px;
+	}
+
+	.photo-search {
+		width: 33px;
+		height: 33px;
+		top: 8px;
+	}
+
 	.search {
 		padding: 0 15px 0 20px;
 	}
@@ -241,7 +268,7 @@
 	}
 
 	.name-profile-header {
-		font-size: 17px;
+		font-size: 15px;
 	}
 
 	.head-page {
@@ -260,7 +287,7 @@
 	}
 
 	.input-container {
-		width: 88%;
+		width: 80%;
 	}
 
 	.search-input {
@@ -286,6 +313,16 @@
 }
 
 @media (min-width: 750px) and (max-width: 1000px) {
+	.search-input::placeholder {
+		font-size: 14px;
+	}
+
+	.photo-search {
+		width: 31px;
+		height: 31px;
+		top: 7px;
+	}
+
 	.search {
 		padding: 0 10px 0 15px;
 	}
@@ -299,7 +336,7 @@
 	}
 
 	.name-profile-header {
-		font-size: 15px;
+		font-size: 14px;
 	}
 
 	.head-page {
@@ -327,6 +364,11 @@
 		width: 75%;
 	}
 
+	.photo-profile-header {
+		width: 35px;
+		height: 35px;
+	}
+
 	.hello {
 		width: 30%;
 	}
@@ -349,6 +391,16 @@
 }
 
 @media (max-width: 750px) {
+	.search-input::placeholder {
+		font-size: 12px;
+	}
+
+	.photo-search {
+		width: 25px;
+		height: 25px;
+		top: 11px;
+	}
+
 	.head-page {
 		display: none;
 	}
@@ -383,7 +435,8 @@
 	}
 
 	.search-input {
-		font-size: 18px;
+		padding: 10px;
+		font-size: 16px;
 		height: 45px;
 	}
 

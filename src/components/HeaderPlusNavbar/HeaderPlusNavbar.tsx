@@ -9,7 +9,7 @@ const HeaderPlusNavbar = () => {
     return (
         <>
             {
-                (loc.pathname === '/profile') ?
+                (loc.pathname === '/profile' || loc.pathname === '/addfamily') ?
                     <Navbar/>
                     :
                     <>

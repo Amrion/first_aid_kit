@@ -4,10 +4,10 @@ import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {loadingProfile} from "../../store/actions/userActions";
 import {useNavigate} from "react-router-dom";
-import {log} from "util";
 import Error500Page from "../Error500Page/Error500Page";
 import Loader from "../../components/Loader/Loader";
 import {title} from "../../models/Title/Title";
+import {getNotify} from "../../store/actions/notifyActions";
 
 const MainPage: FC = () => {
     const [value, setValue] = useState('Сегодня');
@@ -59,6 +59,8 @@ const MainPage: FC = () => {
                     }
                 });
         }
+
+        dispatch(getNotify())
 
         return () => {
             title.innerText = 'My Aid Kit';

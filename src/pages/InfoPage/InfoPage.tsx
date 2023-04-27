@@ -229,14 +229,14 @@ const InfoPage: FC = () => {
             <section className='third-container'>
                 <div ref={thirdLeft} className='third-right'></div>
                 <div ref={thirdRight} className="third-left">
-                    <span className='info-import'>Сканируй</span> лекарства или <span className='info-import-second'>загружай</span> фотографию для быстрого добавления в список аптечки
+                    <span className='info-import'>Сфоткай</span> штрих-код лекарства для быстрого поиска <span className='info-import-second '> конкретного </span> лекарства в поиске ВСЕХ препаратов РФ
                 </div>
             </section>
             <section className='fourth-container'>
                 <div className='fourth-first'>
                     <div ref={fourthLeft} className='fourth-left'></div>
                     <ul ref={fourthRight} className="fourth-right">
-                        <li> Ищи лекарство из твоей аптечки по <span className='info-import-second'>симптому!</span></li>
+                        <li> Добавляй лекарство <span className='info-import-second'>быстро</span></li>
                         <li className='info-ul-last-child'> <span className='info-import'>Семейный аккаунт</span> для внесения лекарст за ребенка </li>
                     </ul>
                 </div>

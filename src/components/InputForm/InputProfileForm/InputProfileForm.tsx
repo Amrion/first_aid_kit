@@ -1,15 +1,15 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import '../inputForm.scss';
-import {Link} from "react-router-dom";
 import MyButton from "../../MyButton/MyButton";
 import MyInput from "../MyInput";
 import {textErrors} from "../utils/textError";
 import {regExp} from "../utils/regExp";
-
-import {user} from "../../../models/User/User";
 import {useAppSelector} from "../../../hooks/useAppSelector";
-
-;
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {changeAvatar, changeProfile} from "../../../store/actions/userActions";
+import Loader from "../../Loader/Loader";
+import {deleteError} from "../../../store/actions/authActions";
+import MiniLoader from "../../MiniLoader/MiniLoader";
 
 const InputsRegForm: FC = () => {
     const [submitError, setSubmitError] = useState<string>('');
@@ -39,13 +39,15 @@ const InputsRegForm: FC = () => {
     const [errorPass, setErrorPass] = useState<string>('');
     const [valuePass, setValuePass] = useState<string>('');
 
-
     const [submitSecPass, setSubmitSecPass] = useState<boolean>(false);
     const [classErrorSecPass, setClassErrorSecPass] = useState<string>('');
     const [valueSecPass, setValueSecPass] = useState<string>('');
     const [errorSecPass, setErrorSecPass] = useState<string>('');
 
-    const [myPhoto, setMyPhoto] = useState('/styles/myPhoto.jpg');
+    const [myPhoto, setMyPhoto] = useState('');
+    const [avatar, setAvatar] = useState('');
+
+    const [checkSave, setCheckSave] = useState(false);
 
     const elemName = useRef<HTMLDivElement>();
     const elemSurName = useRef<HTMLDivElement>();
@@ -53,8 +55,11 @@ const InputsRegForm: FC = () => {
     const elemAge = useRef<HTMLDivElement>();
     const elemPass = useRef<HTMLDivElement>();
     const elemSecPass = useRef<HTMLDivElement>();
+    const refError = useRef<HTMLDivElement>();
 
     const {name, surname, age, email, photo} = useAppSelector(state => state.user);
+    const {isLoading} = useAppSelector(state => state.auth);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setValueName(name)
@@ -62,7 +67,7 @@ const InputsRegForm: FC = () => {
         setValueEmail(email)
         setValueAge(age)
         setMyPhoto(photo)
-    }, [])
+    }, [name])
 
     const changeBorderFocusName = () => {
         elemName.current.style.borderColor = '#B36FF7';
@@ -73,11 +78,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurName = (value: string) => {
-        value = value.trim();
+    const changeValueName = (value: string) => {
+        setValueName(value);
+    }
+
+    const changeBorderBlurName = () => {
+        setValueName(valueName.trim());
         elemName.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueName.length === 0) {
             setErrorName(textErrors.empty);
             setClassErrorName('error-active');
             setSubmitName(false)
@@ -85,10 +94,10 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value.match(/<script>/) !== null ||
-            value.match(/<a/) !== null ||
-            value.match(/<img/) !== null ||
-            !(regExp.checkUsername.test(value))) {
+        if (valueName.match(/<script>/) !== null ||
+            valueName.match(/<a/) !== null ||
+            valueName.match(/<img/) !== null ||
+            !(regExp.checkUsername.test(valueName))) {
             setErrorName(textErrors.wrongData);
             setClassErrorName('error-active');
             setSubmitName(false)
@@ -96,7 +105,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueName(value);
         setSubmitName(true)
     }
 
@@ -109,11 +117,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurSurName = (value: string) => {
-        value = value.trim();
+    const changeValueSurname = (value: string) => {
+        setValueSurName(value);
+    }
+
+    const changeBorderBlurSurName = () => {
+        setValueSurName(valueSurName.trim());
         elemSurName.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueSurName.length === 0) {
             setErrorSurName(textErrors.empty);
             setClassErrorSurName('error-active');
             setSubmitSurName(false)
@@ -121,10 +133,10 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value.match(/<script>/) !== null ||
-            value.match(/<a/) !== null ||
-            value.match(/<img/) !== null ||
-            !(regExp.checkUsername.test(value))) {
+        if (valueSurName.match(/<script>/) !== null ||
+            valueSurName.match(/<a/) !== null ||
+            valueSurName.match(/<img/) !== null ||
+            !(regExp.checkUsername.test(valueSurName))) {
             setErrorSurName(textErrors.wrongData);
             setClassErrorSurName('error-active');
             setSubmitSurName(false)
@@ -132,7 +144,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueSurName(value);
         setSubmitSurName(true)
     }
     const changeBorderFocusEmail = () => {
@@ -144,11 +155,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurEmail = (value: string) => {
-        value = value.trim();
+    const changeValueEmail = (value: string) => {
+        setValueEmail(value);
+    }
+
+    const changeBorderBlurEmail = () => {
+        setValueEmail(valueEmail.trim());
         elemEmail.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueEmail.length === 0) {
             setErrorEmail(textErrors.empty);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -156,7 +171,7 @@ const InputsRegForm: FC = () => {
             return;
         }
 
-        if (!regExp.checkEmail.test(value) && value.length !== 0) {
+        if (!regExp.checkEmail.test(valueEmail) && valueEmail.length !== 0) {
             setErrorEmail(textErrors.wrongEmail);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -164,7 +179,6 @@ const InputsRegForm: FC = () => {
             return;
         }
 
-        setValueEmail(value);
         setSubmitEmail(true);
     }
 
@@ -177,10 +191,14 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurAge = (value: string) => {
+    const changeValueAge = (value: string) => {
+        setValueAge(value);
+    }
+
+    const changeBorderBlurAge = () => {
         elemAge.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueAge.length === 0) {
             setErrorAge(textErrors.empty);
             setClassErrorAge('error-active');
             setSubmitAge(false)
@@ -188,7 +206,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueAge(value);
         setSubmitAge(true)
     }
 
@@ -201,19 +218,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurPassword = (value: string) => {
-        value = value.trim();
+    const changeValuePass = (value: string) => {
+        setValuePass(value);
+    }
+
+    const changeBorderBlurPassword = () => {
+        setValuePass(valuePass.trim());
         elemPass.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
-            setErrorPass(textErrors.empty);
-            setClassErrorPass('error-active');
-            setSubmitPass(false)
-
-            return
-        }
-
-        if (value.length > 50) {
+        if (valuePass.length > 50) {
             setErrorPass(textErrors.tooLong);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -221,7 +234,7 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (!regExp.minimum8Chars.test(value)) {
+        if (!regExp.minimum8Chars.test(valuePass) && valuePass !== '') {
             setErrorPass(textErrors.shortPass);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -229,8 +242,8 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (!regExp.containsNumbers.test(value) ||
-            !regExp.containsLetters.test(value)) {
+        if ((!regExp.containsNumbers.test(valuePass) ||
+            !regExp.containsLetters.test(valuePass)) && valuePass !== '') {
             setErrorPass(textErrors.wrongPass);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -238,7 +251,7 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValuePass(value)
+
         setSubmitPass(true)
     }
 
@@ -251,19 +264,16 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurSecPassword = (value: string) => {
-        value = value.trim();
+    const changeValueSecPass = (value: string) => {
+        setValueSecPass(value);
+    }
+
+
+    const changeBorderBlurSecPassword = () => {
+        setValueSecPass(valueSecPass.trim());
         elemSecPass.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
-            setErrorSecPass(textErrors.empty);
-            setClassErrorSecPass('error-active');
-            setSubmitSecPass(false)
-
-            return
-        }
-
-        if (value !== valuePass) {
+        if (valueSecPass !== valuePass) {
             setErrorSecPass(textErrors.secondPassErr);
             setClassErrorSecPass('error-active');
             setSubmitSecPass(false)
@@ -271,16 +281,24 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueSecPass(value);
         setSubmitSecPass(true)
     }
 
     const changePhoto = (e) => {
-        setMyPhoto(URL.createObjectURL(e.target.files[0]))
+        setMyPhoto(URL.createObjectURL(e.target.files[0]));
+        setAvatar(e.target.files[0]);
     }
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
+        setCheckSave(true)
+
+        if (valueName === name && valueEmail === email && valueSurName === surname && valueAge === age && valuePass === '' && avatar === '') {
+            refError.current.classList.remove('error-success');
+            setSubmitError('Информация не изменилась');
+
+            return;
+        }
 
         if (!submitName) {
             setErrorName(textErrors.wrongData);
@@ -314,24 +332,72 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (!submitPass) {
-            setErrorPass(textErrors.checkPass);
-            setClassErrorPass('error-active');
-            setSubmitPass(false)
+        setSubmitError('');
+        const tempData = {};
+        let kolReg = 0;
 
-            return
+        if (valueName !== name) {
+            kolReg++;
+            tempData['name'] = valueName;
         }
 
-        if (!submitSecPass) {
-            setErrorSecPass(textErrors.checkPass);
-            setClassErrorSecPass('error-active');
-            setSubmitSecPass(false)
-
-            return
+        if (valueSurName !== surname) {
+            kolReg++;
+            tempData['surname'] = valueSurName;
         }
 
-        console.log('ЗАШЕЛ')
-        // TODO запрос на Регистрацию, то есть dispatch
+        if (valueEmail !== email) {
+            kolReg++;
+            tempData['email'] = valueEmail;
+        }
+
+        if (valueAge !== age) {
+            kolReg++;
+            tempData['date'] = valueAge;
+        }
+
+        if (valuePass !== '' && submitPass === true && submitSecPass === false) {
+            setErrorSecPass('Подтвердите пароль')
+            setClassErrorSecPass('error-active')
+
+            return;
+        }
+
+        if (valuePass !== '' && submitPass === true && submitSecPass === true) {
+            kolReg++;
+            tempData['password'] = valuePass;
+        }
+
+        if (avatar !== '') {
+            let formData = new FormData();
+            formData.append('file', avatar);
+
+            const res = await dispatch(changeAvatar(formData, myPhoto));
+
+            if (!res) {
+                refError.current.classList.remove('error-success');
+                setSubmitError('Упс... Пожалуйста, повторите позже');
+                setCheckSave(false)
+
+                return;
+            }
+        }
+
+        if (kolReg !== 0) {
+            const res = await dispatch(changeProfile(tempData));
+
+            if (!res) {
+                refError.current.classList.remove('error-success');
+                setSubmitError('Упс... Пожалуйста, повторите позже');
+                setCheckSave(false)
+
+                return
+            }
+        }
+
+        setCheckSave(false)
+        setSubmitError('Информация изменилась');
+        refError.current.classList.add('error-success');
     }
 
     return (
@@ -346,6 +412,7 @@ const InputsRegForm: FC = () => {
                                  error={errorName}
                                  blur={changeBorderBlurName}
                                  focus={changeBorderFocusName}
+                                 change={changeValueName}
                                  type='text'
                                  value={valueName}
                                  placeholder='Имя'
@@ -361,6 +428,7 @@ const InputsRegForm: FC = () => {
                                  value={valueSurName}
                                  blur={changeBorderBlurSurName}
                                  focus={changeBorderFocusSurName}
+                                 change={changeValueSurname}
                                  type='text'
                                  placeholder='Фамилия'
                         >
@@ -375,6 +443,8 @@ const InputsRegForm: FC = () => {
                                  value={valueEmail}
                                  blur={changeBorderBlurEmail}
                                  focus={changeBorderFocusEmail}
+                                 disable={true}
+                                 change={changeValueEmail}
                                  type='email'
                                  placeholder='Почта'
                         >
@@ -388,6 +458,7 @@ const InputsRegForm: FC = () => {
                                  value={valueAge}
                                  blur={changeBorderBlurAge}
                                  focus={changeBorderFocusAge}
+                                 change={changeValueAge}
                                  type='date'
                                  placeholder='Возраст'
                                  min='1920-01-01'
@@ -403,6 +474,7 @@ const InputsRegForm: FC = () => {
                                  value={valuePass}
                                  blur={changeBorderBlurPassword}
                                  focus={changeBorderFocusPassword}
+                                 change={changeValuePass}
                                  type='password'
                                  placeholder='Пароль'
                         >
@@ -416,6 +488,7 @@ const InputsRegForm: FC = () => {
                                  error={errorSecPass}
                                  blur={changeBorderBlurSecPassword}
                                  focus={changeBorderFocusSecPassword}
+                                 change={changeValueSecPass}
                                  type='password'
                                  placeholder='Повторите пароль'
                         >
@@ -433,11 +506,43 @@ const InputsRegForm: FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className='error'> {submitError} </div>
-                <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='20px 0 0 0'> Сохранить </MyButton>
-                <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='14px 0 0 0'> Сохранить </MyButton>
-                <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='14px 0 0 0'> Сохранить </MyButton>
-                <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='18px' margin='14px 0 0 0'> Сохранить </MyButton>
+                <div ref={refError} className='error error-active' style={{textAlign: 'center'}}> {submitError} </div>
+                <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'>
+                    {
+                        (isLoading && checkSave)
+                            ?
+                                <MiniLoader/>
+                            :
+                                'Сохранить'
+                    }
+                </MyButton>
+                <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'>
+                    {
+                        (isLoading && checkSave)
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Сохранить'
+                    }
+                </MyButton>
+                <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'>
+                    {
+                        (isLoading && checkSave)
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Сохранить'
+                    }
+                </MyButton>
+                <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='18px' margin='0 0 0 0'>
+                    {
+                        (isLoading && checkSave)
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Сохранить'
+                    }
+                </MyButton>
             </form>
         </div>
     );

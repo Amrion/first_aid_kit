@@ -9,6 +9,7 @@ import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {deleteError, loginOrLogout} from "../../../store/actions/authActions";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import Loader from "../../Loader/Loader";
+import MiniLoader from "../../MiniLoader/MiniLoader";
 
 const InputsRegForm: FC = () => {
     const [submitName, setSubmitName] = useState<boolean>(false);
@@ -36,10 +37,10 @@ const InputsRegForm: FC = () => {
     const [errorPass, setErrorPass] = useState<string>('');
     const [valuePass, setValuePass] = useState<string>('')
 
-
     const [submitSecPass, setSubmitSecPass] = useState<boolean>(false);
     const [classErrorSecPass, setClassErrorSecPass] = useState<string>('');
     const [errorSecPass, setErrorSecPass] = useState<string>('');
+    const [valueSecPass, setValueSecPass] = useState<string>('')
 
     const [link, setLink] = useState('');
 
@@ -71,11 +72,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurName = (value: string) => {
-        value = value.trim();
+    const changeValueName = (value: string) => {
+        setValueName(value);
+    }
+
+    const changeBorderBlurName = () => {
+        setValueName(valueName.trim());
         elemName.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueName.length === 0) {
             setErrorName(textErrors.empty);
             setClassErrorName('error-active');
             setSubmitName(false)
@@ -83,10 +88,10 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value.match(/<script>/) !== null ||
-            value.match(/<a/) !== null ||
-            value.match(/<img/) !== null ||
-            !(regExp.checkUsername.test(value))) {
+        if (valueName.match(/<script>/) !== null ||
+            valueName.match(/<a/) !== null ||
+            valueName.match(/<img/) !== null ||
+            !(regExp.checkUsername.test(valueName))) {
             setErrorName(textErrors.wrongData);
             setClassErrorName('error-active');
             setSubmitName(false)
@@ -94,7 +99,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueName(value);
         setSubmitName(true)
     }
 
@@ -107,11 +111,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurSurName = (value: string) => {
-        value = value.trim();
+    const changeValueSurname = (value: string) => {
+        setValueSurName(value);
+    }
+
+    const changeBorderBlurSurName = () => {
+        setValueSurName(valueSurName.trim());
         elemSurName.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueSurName.length === 0) {
             setErrorSurName(textErrors.empty);
             setClassErrorSurName('error-active');
             setSubmitSurName(false)
@@ -119,18 +127,16 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value.match(/<script>/) !== null ||
-            value.match(/<a/) !== null ||
-            value.match(/<img/) !== null ||
-            !(regExp.checkUsername.test(value))) {
+        if (valueSurName.match(/<script>/) !== null ||
+            valueSurName.match(/<a/) !== null ||
+            valueSurName.match(/<img/) !== null ||
+            !(regExp.checkUsername.test(valueSurName))) {
             setErrorSurName(textErrors.wrongData);
             setClassErrorSurName('error-active');
             setSubmitSurName(false)
 
             return
         }
-
-        setValueSurName(value);
 
         setSubmitSurName(true)
     }
@@ -143,11 +149,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurEmail = (value: string) => {
-        value = value.trim();
+    const changeValueEmail = (value: string) => {
+        setValueEmail(value);
+    }
+
+    const changeBorderBlurEmail = () => {
+        setValueEmail(valueEmail.trim());
         elemEmail.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueEmail.length === 0) {
             setErrorEmail(textErrors.empty);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -155,7 +165,7 @@ const InputsRegForm: FC = () => {
             return;
         }
 
-        if (!regExp.checkEmail.test(value) && value.length !== 0) {
+        if (!regExp.checkEmail.test(valueEmail) && valueEmail.length !== 0) {
             setErrorEmail(textErrors.wrongEmail);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -163,7 +173,6 @@ const InputsRegForm: FC = () => {
             return;
         }
 
-        setValueEmail(value);
         setSubmitEmail(true);
     }
 
@@ -176,10 +185,14 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurAge = (value: string) => {
+    const changeValueAge = (value: string) => {
+        setValueAge(value);
+    }
+
+    const changeBorderBlurAge = () => {
         elemAge.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueAge.length === 0) {
             setErrorAge(textErrors.empty);
             setClassErrorAge('error-active');
             setSubmitAge(false)
@@ -187,7 +200,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValueAge(value);
         setSubmitAge(true)
     }
 
@@ -200,11 +212,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurPassword = (value: string) => {
-        value = value.trim();
+    const changeValuePass = (value: string) => {
+        setValuePass(value);
+    }
+
+    const changeBorderBlurPassword = () => {
+        setValuePass(valuePass.trim());
         elemPass.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valuePass.length === 0) {
             setErrorPass(textErrors.empty);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -212,7 +228,7 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value.length > 50) {
+        if (valuePass.length > 50) {
             setErrorPass(textErrors.tooLong);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -220,7 +236,7 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (!regExp.minimum8Chars.test(value)) {
+        if (!regExp.minimum8Chars.test(valuePass)) {
             setErrorPass(textErrors.shortPass);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -228,8 +244,8 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (!regExp.containsNumbers.test(value) ||
-            !regExp.containsLetters.test(value)) {
+        if (!regExp.containsNumbers.test(valuePass) ||
+            !regExp.containsLetters.test(valuePass)) {
             setErrorPass(textErrors.wrongPass);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -237,7 +253,6 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        setValuePass(value)
         setSubmitPass(true)
     }
 
@@ -250,11 +265,15 @@ const InputsRegForm: FC = () => {
         }
     }
 
-    const changeBorderBlurSecPassword = (value: string) => {
-        value = value.trim();
+    const changeValueSecPass = (value: string) => {
+        setValueSecPass(value);
+    }
+
+    const changeBorderBlurSecPassword = () => {
+        setValueSecPass(valueSecPass.trim());
         elemSecPass.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueSecPass.length === 0) {
             setErrorSecPass(textErrors.empty);
             setClassErrorSecPass('error-active');
             setSubmitSecPass(false)
@@ -262,7 +281,7 @@ const InputsRegForm: FC = () => {
             return
         }
 
-        if (value !== valuePass) {
+        if (valueSecPass !== valuePass) {
             setErrorSecPass(textErrors.secondPassErr);
             setClassErrorSecPass('error-active');
             setSubmitSecPass(false)
@@ -354,6 +373,7 @@ const InputsRegForm: FC = () => {
                              error={errorName}
                              blur={changeBorderBlurName}
                              focus={changeBorderFocusName}
+                             change={changeValueName}
                              type='text'
                              placeholder='Имя'
                     >
@@ -367,6 +387,7 @@ const InputsRegForm: FC = () => {
                              error={errorSurName}
                              blur={changeBorderBlurSurName}
                              focus={changeBorderFocusSurName}
+                             change={changeValueSurname}
                              type='text'
                              placeholder='Фамилия'
                     >
@@ -380,6 +401,7 @@ const InputsRegForm: FC = () => {
                              error={errorEmail}
                              blur={changeBorderBlurEmail}
                              focus={changeBorderFocusEmail}
+                             change={changeValueEmail}
                              type='email'
                              placeholder='Почта'
                     >
@@ -392,6 +414,7 @@ const InputsRegForm: FC = () => {
                              error={errorAge}
                              blur={changeBorderBlurAge}
                              focus={changeBorderFocusAge}
+                             change={changeValueAge}
                              type='date'
                              placeholder='Возраст'
                              min='1920-01-01'
@@ -407,6 +430,7 @@ const InputsRegForm: FC = () => {
                              error={errorPass}
                              blur={changeBorderBlurPassword}
                              focus={changeBorderFocusPassword}
+                             change={changeValuePass}
                              type='password'
                              placeholder='Пароль'
                     >
@@ -420,6 +444,7 @@ const InputsRegForm: FC = () => {
                              error={errorSecPass}
                              blur={changeBorderBlurSecPassword}
                              focus={changeBorderFocusSecPassword}
+                             change={changeValueSecPass}
                              type='password'
                              placeholder='Повторите пароль'
                     >
@@ -428,15 +453,35 @@ const InputsRegForm: FC = () => {
                             <path d="M22 12C23.1046 12 24 11.1046 24 10C24 8.89543 23.1046 8 22 8C20.8954 8 20 8.89543 20 10C20 11.1046 20.8954 12 22 12Z" fill="white"/>
                         </svg>
                     </MyInput>
-                    {
-                        isLoading &&
-                            <Loader add='loader-log-reg'/>
-                    }
                     <div ref={refError} style={{textAlign: 'center'}} className='error error-active'> {isError} </div>
-                    <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'> Зарегистрироваться </MyButton>
-                    <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'> Зарегистрироваться </MyButton>
-                    <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'> Зарегистрироваться </MyButton>
-                    <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='18px' margin='0 0 0 0'> Зарегистрироваться </MyButton>
+                    <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'> {
+                        isLoading
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Зарегистрироваться'
+                    } </MyButton>
+                    <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'> {
+                        isLoading
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Зарегистрироваться'
+                    } </MyButton>
+                    <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'> {
+                        isLoading
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Зарегистрироваться'
+                    } </MyButton>
+                    <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='18px' margin='0 0 0 0'> {
+                        isLoading
+                            ?
+                            <MiniLoader/>
+                            :
+                            'Зарегистрироваться'
+                    } </MyButton>
                 </form>
                 <div className='text'>
                     <span className='first-span'> Есть аккаунт? <Link className='second-span' to='/login'> Войдите! </Link></span>

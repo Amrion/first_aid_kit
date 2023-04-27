@@ -6,7 +6,7 @@ interface MedicineProps {
     id: number,
     src: string,
     name: string,
-    kol?: string
+    kol?: number
 }
 
 const Medicine: FC<MedicineProps> = ({id, src, name, kol}) => {
@@ -17,7 +17,14 @@ const Medicine: FC<MedicineProps> = ({id, src, name, kol}) => {
             </Link>
             <div className='under-photo'>
                 <div className='list-med-name'>{name}</div>
-                <div className='list-med-kol'> Осталось: <span className='remain-med'>{kol}</span> </div>
+                {
+                    Number(kol) === 0
+                        ?
+                            <div className='list-med-kol'> Осталось: <span className='remain-med'>-</span> </div>
+                        :
+                            <div className='list-med-kol'> Осталось: <span className='remain-med'>{kol}</span> </div>
+                }
+
             </div>
         </div>
     );

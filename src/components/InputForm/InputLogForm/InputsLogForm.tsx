@@ -9,6 +9,7 @@ import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {deleteError, loginOrLogout} from "../../../store/actions/authActions";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import Loader from "../../Loader/Loader";
+import MiniLoader from "../../MiniLoader/MiniLoader";
 
 const InputsLogForm: FC = () => {
     const [submitEmail, setSubmitEmail] = useState<boolean>(false);
@@ -45,10 +46,14 @@ const InputsLogForm: FC = () => {
         }
     }
 
-    const changeBorderBlurEmail = (value: string) => {
+    const changeValueEmail = (value: string) => {
+        setValueEmail(value);
+    }
+
+    const changeBorderBlurEmail = () => {
         elemFirst.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valueEmail.length === 0) {
             setErrorEmail(textErrors.empty);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -56,7 +61,7 @@ const InputsLogForm: FC = () => {
             return;
         }
 
-        if (!regExp.checkEmail.test(value) && value.length !== 0) {
+        if (!regExp.checkEmail.test(valueEmail) && valueEmail.length !== 0) {
             setErrorEmail(textErrors.wrongEmail);
             setClassErrorEmail('error-active');
             setSubmitEmail(false);
@@ -64,7 +69,6 @@ const InputsLogForm: FC = () => {
             return;
         }
 
-        setValueEmail(value);
         setSubmitEmail(true);
     }
 
@@ -77,10 +81,14 @@ const InputsLogForm: FC = () => {
         }
     }
 
-    const changeBorderBlurPassword = (value: string) => {
+    const changeValuePass = (value: string) => {
+        setValuePass(value)
+    }
+
+    const changeBorderBlurPassword = () => {
         elemSecond.current.style.borderColor = '#ECECEC';
 
-        if (value.length === 0) {
+        if (valuePass.length === 0) {
             setErrorPass(textErrors.empty);
             setClassErrorPass('error-active');
             setSubmitPass(false)
@@ -88,7 +96,6 @@ const InputsLogForm: FC = () => {
             return
         }
 
-        setValuePass(value)
         setSubmitPass(true)
     }
 
@@ -132,6 +139,7 @@ const InputsLogForm: FC = () => {
                          error={errorEmail}
                          blur={changeBorderBlurEmail}
                          focus={changeBorderFocusEmail}
+                         change={changeValueEmail}
                          type='email'
                          placeholder='Почта'
                 >
@@ -144,6 +152,7 @@ const InputsLogForm: FC = () => {
                          error={errorPass}
                          blur={changeBorderBlurPassword}
                          focus={changeBorderFocusPassword}
+                         change={changeValuePass}
                          type='password'
                          placeholder='Пароль'
                 >
@@ -152,15 +161,35 @@ const InputsLogForm: FC = () => {
                         <path d="M22 12C23.1046 12 24 11.1046 24 10C24 8.89543 23.1046 8 22 8C20.8954 8 20 8.89543 20 10C20 11.1046 20.8954 12 22 12Z" fill="white"/>
                     </svg>
                 </MyInput>
-                {
-                    isLoading &&
-                        <Loader add='loader-log-reg'/>
-                }
                 <div  ref={refError} style={{textAlign: 'center'}} className='error error-active'> {isError} </div>
-                <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'> Войти </MyButton>
-                <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'> Войти </MyButton>
-                <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'> Войти </MyButton>
-                <MyButton size='mobile-log' submit={submit}  width='100%' height='38px' fontSize='18px' margin='0 0 0 0'> Войти </MyButton>
+                <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'> {
+                    isLoading
+                        ?
+                        <MiniLoader/>
+                        :
+                        'Войти'
+                } </MyButton>
+                <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'> {
+                    isLoading
+                        ?
+                        <MiniLoader/>
+                        :
+                        'Войти'
+                } </MyButton>
+                <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'> {
+                    isLoading
+                        ?
+                        <MiniLoader/>
+                        :
+                        'Войти'
+                } </MyButton>
+                <MyButton size='mobile-log' submit={submit}  width='100%' height='38px' fontSize='18px' margin='0 0 0 0'> {
+                    isLoading
+                        ?
+                        <MiniLoader/>
+                        :
+                        'Войти'
+                } </MyButton>
             </form>
             <div className='text'>
                 <span className='first-span'> Нет аккаунта? <Link className='second-span' to='/reg'> Зарегистрируйся! </Link></span>

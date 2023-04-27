@@ -2,19 +2,20 @@ import React, {FC, useEffect, useState} from 'react';
 import './listPage.scss'
 import Medicine from "../../components/Medicine/Medicine";
 
-import {arr} from "../../models/List/List";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {loadingProfile} from "../../store/actions/userActions";
 import Error500Page from "../Error500Page/Error500Page";
 import {title} from "../../models/Title/Title";
 import Loader from "../../components/Loader/Loader";
+import {getListMed} from "../../store/actions/medActions";
 
 const ListPage: FC = () => {
     const nav = useNavigate();
 
     const {isAuth, isLoading} = useAppSelector(state => state.auth);
+    const {medList} = useAppSelector(state => state.med);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
@@ -35,6 +36,10 @@ const ListPage: FC = () => {
                 });
         }
 
+        if (medList.length === 0) {
+            dispatch(getListMed());
+        }
+
         return () => {
             title.innerText = 'My Aid Kit';
         }
@@ -51,9 +56,13 @@ const ListPage: FC = () => {
                 <div className="addmed-h1">Список ваших лекарств</div>
                 <div className='list-container'>
                     {
-                        arr.map((item) => {
-                            return <Medicine key={item.id} id={item.id} src={item.photo} name={item.med} kol={item.kol}/>
-                        })
+                        medList.length === 0
+                            ?
+                                <div className='under-profile'>Добавляйте лекарства из вашей домашней аптечки <Link className='link-list' to='/addmed'>здесь</Link></div>
+                            :
+                                medList.map((item) => {
+                                    return <Medicine key={item.id} id={item.id} src={item.image} name={item.name} kol={item.count}/>
+                                })
                     }
                 </div>
             </div>

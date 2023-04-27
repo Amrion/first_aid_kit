@@ -8,6 +8,7 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 const Header: FC = () => {
     const {name, photo} = useAppSelector(state => state.user);
 
+
     return (
         <header className='head-page'>
             <HelloInHeader/>

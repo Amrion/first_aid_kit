@@ -1,0 +1,45 @@
+.family-avatar-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.add-family-back {
+	background-image: url("../../../public/static/familyBack.webp") !important;
+}
+
+.back-to-profile {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	top: 20px;
+	left: 120px;
+	cursor: pointer;
+	transition: all 0.5s;
+	z-index: 20;
+}
+
+.back-to-profile:hover {
+	transform: scale(1.1);
+}
+
+.add-family-second {
+	height: 100vh !important;
+}
+
+@media (min-width: 750px) and (max-width: 1400px) {
+	.back-to-profile {
+		left: 95px;
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media (max-width: 750px) {
+	.back-to-profile {
+		left: 15px;
+		top: 70px;
+		width: 50px;
+		height: 50px;
+	}
+}
