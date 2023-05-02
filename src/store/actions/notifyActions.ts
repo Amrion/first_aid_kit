@@ -1,5 +1,5 @@
 import {medActionCodeError, medActionLoading, medActionOneMedApi} from "../reducers/medReducer/medReducer";
-import {localUrl} from "../store";
+import {apiUrl} from "../store";
 import axios from "axios";
 import {notifyActionNotList, notifyActionNullNotList, notifyActionTime} from "../reducers/notifyReducer/notifyReducer";
 
@@ -9,7 +9,7 @@ export const addNotify = (data) => {
             dispatch(medActionLoading(true));
 
             const res = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/add/notification',
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -18,7 +18,7 @@ export const addNotify = (data) => {
             });
 
             const list = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -62,7 +62,7 @@ export const getNotify = () => {
             dispatch(medActionLoading(true));
 
             const res = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -87,7 +87,7 @@ export const removeNotify = (id) => {
             dispatch(medActionLoading(true));
 
             const res = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/remove/notification',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -98,7 +98,7 @@ export const removeNotify = (id) => {
             });
 
             const list = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
