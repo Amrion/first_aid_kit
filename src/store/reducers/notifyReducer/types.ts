@@ -1,63 +1,37 @@
-export interface OneMed {
+export interface Notifications {
     id: number,
-    image: string,
-    name: string,
+    id_to_user: number,
+    is_accepted: boolean,
     is_tablets: boolean,
-    count: number,
+    name_medicine: string,
+    name_to: string,
+    time: string,
 }
 
-export interface MedState {
-    medList: Array<OneMed>,
-    codeError: string,
-    loading: boolean,
-    oneMedApi: any,
-    searchList: Array<any>,
+export interface NotifyState {
+    notList: Array<Notifications>
+    time: any,
 }
 
-export enum MedActionEnum {
-    SET_MEDLIST = 'SET_MEDLIST',
-    SET_NULL_MEDLIST = 'SET_NULL_MEDLIST',
-    SET_CODE_ERROR = 'SET_CODE_ERROR',
-    SET_LOADING_MED = 'SET_LOADING_MED',
-    SET_ONEMEDAPI = 'SET_ONEMEDAPI',
-    SET_SEARCH_LIST = 'SET_SEARCH_LIST',
-    SET_NULL_SEARCH_LIST = 'SET_NULL_SEARCH_LIST',
+export enum NotifyActionEnum {
+    SET_NOTIFYLIST = 'SET_NOTIFYLIST',
+    SET_NOTIFYNULLLIST = 'SET_NOTIFYNULLLIST',
+    SET_TIME = 'SET_TIME',
 }
 
-export interface SetMedListAction {
-    type: MedActionEnum.SET_MEDLIST,
-    payload: OneMed,
+export interface SetNotifyListAction {
+    type: NotifyActionEnum.SET_NOTIFYLIST,
+    payload: Array<Notifications>
 }
 
-export interface SetNullMedListAction {
-    type: MedActionEnum.SET_NULL_MEDLIST,
+export interface SetNotifyListNullAction {
+    type: NotifyActionEnum.SET_NOTIFYNULLLIST,
     payload: [],
 }
 
-export interface SetCodeErrorAction {
-    type: MedActionEnum.SET_CODE_ERROR,
-    payload: string,
-}
-
-export interface SetLoadingAction {
-    type: MedActionEnum.SET_LOADING_MED,
-    payload: boolean,
-}
-
-export interface SetOneMedApiAction {
-    type: MedActionEnum.SET_ONEMEDAPI,
+export interface SetTimeAction {
+    type: NotifyActionEnum.SET_TIME,
     payload: any,
 }
 
-export interface SetSearchListAction {
-    type: MedActionEnum.SET_SEARCH_LIST,
-    payload: Array<any>,
-}
-
-export interface SetNullSearchListAction {
-    type: MedActionEnum.SET_NULL_SEARCH_LIST,
-    payload: [],
-}
-
-
-export type MedAction = SetMedListAction | SetNullMedListAction | SetCodeErrorAction | SetLoadingAction | SetOneMedApiAction | SetSearchListAction | SetNullSearchListAction
+export type NotifyAction = SetNotifyListAction | SetNotifyListNullAction | SetTimeAction
