@@ -7,6 +7,11 @@
 	background: var(--font-color);
 }
 
+.back-to-info {
+	left: 50px !important;
+	top: 40px !important;
+}
+
 .menu-form {
 	width: 75%;
 	display: flex;
@@ -191,6 +196,11 @@
 }
 
 @media (max-width: 750px) {
+	.back-to-info {
+		top: 20px !important;
+		left: 20px !important;
+	}
+
 	.conf-first {
 		font-size: 16px;
 	}
