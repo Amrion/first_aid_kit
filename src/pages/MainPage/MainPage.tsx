@@ -77,12 +77,14 @@ const MainPage: FC = () => {
             setTimeCheck(true);
         }
 
-        setNowDay(notList.filter((item) => {
-            const now = new Date(item.time);
+        const newArr = notList.filter((item) => {
+            const now = new Date(item.time.slice(0, -2));
             if (now.getDate().toString() === value.replace(/[^0-9]/g,"")) {
                 return item;
             }
-        }).sort((a, b) => {
+        })
+
+        setNowDay(newArr.sort((a, b) => {
             return Number(a.time.split(' ')[1].slice(0, 2)) - Number(b.time.split(' ')[1].slice(0, 2));
         }))
     }, [value, notList, time])

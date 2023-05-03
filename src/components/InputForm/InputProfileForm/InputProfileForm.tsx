@@ -507,36 +507,36 @@ const InputsRegForm: FC = () => {
                     </div>
                 </div>
                 <div ref={refError} className='error error-active' style={{textAlign: 'center'}}> {submitError} </div>
-                <MyButton size='desktop-log' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'>
+                <MyButton size='desktop-log prof' submit={submit}  width='100%' height='50px' fontSize='25px' margin='0 0 0 0'>
                     {
-                        (isLoading && checkSave)
+                        (checkSave)
                             ?
                                 <MiniLoader/>
                             :
                                 'Сохранить'
                     }
                 </MyButton>
-                <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'>
+                <MyButton size='small-desktop-log prof' submit={submit}  width='100%' height='45px' fontSize='22px' margin='0 0 0 0'>
                     {
-                        (isLoading && checkSave)
+                        (checkSave)
                             ?
                             <MiniLoader/>
                             :
                             'Сохранить'
                     }
                 </MyButton>
-                <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'>
+                <MyButton size='ipad-log prof' submit={submit}  width='100%' height='40px' fontSize='20px' margin='0 0 0 0'>
                     {
-                        (isLoading && checkSave)
+                        (checkSave)
                             ?
                             <MiniLoader/>
                             :
                             'Сохранить'
                     }
                 </MyButton>
-                <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='18px' margin='0 0 0 0'>
+                <MyButton size='mobile-log prof' submit={submit}  width='100%' height='35px' fontSize='18px' margin='0 0 0 0'>
                     {
-                        (isLoading && checkSave)
+                        (checkSave)
                             ?
                             <MiniLoader/>
                             :

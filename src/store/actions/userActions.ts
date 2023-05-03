@@ -76,8 +76,6 @@ export const login = (user) => {
 export const changeProfile = (data) => {
     return async (dispatch) => {
         try {
-            dispatch(authActionLoading(true));
-
             const token = await axios({
                 baseURL: apiUrl,
                 url: '/csrf',
@@ -132,8 +130,6 @@ export const changeProfile = (data) => {
             return true;
         } catch (error) {
             return false;
-        } finally {
-            dispatch(authActionLoading(false));
         }
     }
 }
