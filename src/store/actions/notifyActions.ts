@@ -204,6 +204,14 @@ export const acceptNotify = (data) => {
 
             dispatch(notifyActionNullNotList([]))
 
+            const list = await axios({
+                baseURL: apiUrl,
+                url: '/notifications ',
+                method: 'GET',
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true
+            });
+
             const time = await axios({
                 baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
@@ -214,7 +222,7 @@ export const acceptNotify = (data) => {
 
             dispatch(notifyActionTime(now))
 
-            const arr = res.data.notifications.map((item) => {
+            const arr = list.data.notifications.map((item) => {
                 item.allow = (Number(now.toString().split(' ')[4].slice(0, 2)) >= Number(item.time.split(' ')[1].slice(0, 2)))
                     && (Number(now.toString().split(' ')[2]) === Number(item.time.split(' ')[0].slice(8, 10)));
 

@@ -15,4 +15,4 @@ RUN aptitude install -y npm
 
 RUN npm install
 EXPOSE 8080/tcp
-CMD ["npm start"]
+CMD ["npm", "start"]
