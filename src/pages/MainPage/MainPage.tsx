@@ -51,8 +51,6 @@ const MainPage: FC = () => {
     useEffect(() => {
         title.innerText = 'Главная страница';
 
-        dispatch(getTime());
-
         if (!isAuth) {
             dispatch(loadingProfile())
                 .then((res) => {
@@ -66,9 +64,7 @@ const MainPage: FC = () => {
                 });
         }
 
-        if (notList.length === 0) {
-            dispatch(getNotify())
-        }
+        dispatch(getNotify())
 
         return () => {
             title.innerText = 'My Aid Kit';
@@ -132,7 +128,15 @@ const MainPage: FC = () => {
                                 <div className='not-list-null'>На этот день у вас нет уведомлений</div>
                                 :
                                 nowDay.map((item, index) => {
-                                    return <NotifyList key={index} nowTime={time.toString().split(' ')[4].slice(0, 2)} name={item.name_to} med={item.name_medicine} time={item.time.split(' ')[1].slice(0, 5)}/>
+                                    return <NotifyList key={index}
+                                                       value={nowDay}
+                                                       id={item.id}
+                                                       allow={item.allow}
+                                                       name={item.name_to}
+                                                       med={item.name_medicine}
+                                                       is_accepted={item.is_accepted}
+                                                       is_tablets={item.is_tablets}
+                                                       time={item.time.split(' ')[1].slice(0, 5)}/>
                                 })
                         }
                     </div>

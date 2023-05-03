@@ -17,10 +17,10 @@ export const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false
     })
-});
+})
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const apiUrl = 'http://myaidkit.ru:1323/api/v1';
+export const apiUrl = 'http://95.163.250.125:1323/api/v1';
 export const localUrl = 'http://localhost:1323/api/v1';

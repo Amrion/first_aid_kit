@@ -1,7 +1,7 @@
 import {authActionAuth, authActionError} from "../reducers/authReducer/authReducer";
 import {login, registration} from "./userActions";
 import axios from "axios";
-import {apiUrl, localUrl} from "../store";
+import {apiUrl} from "../store";
 import {
     userActionAdult,
     userActionAge,
@@ -51,7 +51,7 @@ export const loginOrLogout = (auth, user?) => {
             }
 
             const res = await axios({
-                baseURL: localUrl,
+                baseURL: apiUrl,
                 url: '/logout',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
