@@ -180,6 +180,8 @@ export const removeNotify = (id) => {
 export const acceptNotify = (data) => {
     return async (dispatch) => {
         try {
+            dispatch(authActionLoading(true));
+
             const token = await axios({
                 baseURL: apiUrl,
                 url: '/csrf',
@@ -200,9 +202,32 @@ export const acceptNotify = (data) => {
                 data
             });
 
+            dispatch(notifyActionNullNotList([]))
+
+            const time = await axios({
+                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                method: 'GET',
+                headers: {"Content-Type": "application/json"},
+            });
+
+            const now = new Date(time.data.utc_datetime)
+
+            dispatch(notifyActionTime(now))
+
+            const arr = res.data.notifications.map((item) => {
+                item.allow = (Number(now.toString().split(' ')[4].slice(0, 2)) >= Number(item.time.split(' ')[1].slice(0, 2)))
+                    && (Number(now.toString().split(' ')[2]) === Number(item.time.split(' ')[0].slice(8, 10)));
+
+                return item
+            })
+
+            dispatch(notifyActionNotList(arr))
+
             return true
         } catch (error) {
             return false;
+        }  finally {
+            dispatch(authActionLoading(false))
         }
     }
 }
