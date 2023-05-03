@@ -1,6 +1,6 @@
 import {authActionLoading} from "../reducers/authReducer/authReducer";
 import axios from "axios";
-import {apiUrl} from "../store";
+import {localUrl} from "../store";
 import {
     medActionCodeError,
     medActionLoading,
@@ -14,7 +14,7 @@ export const addOneMed = (data) => {
             dispatch(authActionLoading(true));
 
             const add = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/add/medicine',
                 method: 'POST',
                 headers: {"Content-Type": "multipart/form-data"},
@@ -23,7 +23,7 @@ export const addOneMed = (data) => {
             });
 
             const list = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/medicine',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -58,7 +58,7 @@ export const editOneMed = (data) => {
             dispatch(authActionLoading(true));
 
             const token = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/csrf',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -66,7 +66,7 @@ export const editOneMed = (data) => {
             });
 
             const add = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/edit/medicine',
                 method: 'PUT',
                 headers: {
@@ -78,7 +78,7 @@ export const editOneMed = (data) => {
             });
 
             const list = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/medicine',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -111,7 +111,7 @@ export const getListMed = () => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/medicine',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -137,7 +137,7 @@ export const deleteOneMed = (data) => {
             dispatch(authActionLoading(true));
 
             const add = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/remove/medicine',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -146,7 +146,7 @@ export const deleteOneMed = (data) => {
             });
 
             const list = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/medicine',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -176,7 +176,7 @@ export const barcodeMed = (data) => {
             dispatch(medActionOneMedApi({}))
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/barcode',
                 method: 'POST',
                 headers: {"Content-Type": "multipart/form-data"},
@@ -206,7 +206,7 @@ export const searchMed = (name) => {
     return async (dispatch) => {
         try {
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: `/search?search_text=${name}`,
                 method: 'GET',
                 headers: {

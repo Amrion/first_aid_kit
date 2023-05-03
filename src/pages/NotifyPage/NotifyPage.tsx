@@ -491,7 +491,7 @@ const NotifyPage: FC = () => {
         if (during.match(/<script>/) !== null ||
             during.match(/<a/) !== null ||
             during.match(/<img/) !== null ||
-            !(regExp.checkKolMed.test(during))) {
+            !(regExp.checkKolMed.test(during)) || Number(during) === 0) {
             setSubmitError('Только число');
             refDuring.current.classList.add('input-med-error');
             refError.current.classList.add('error-active');

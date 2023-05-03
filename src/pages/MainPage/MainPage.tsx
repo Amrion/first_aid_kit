@@ -132,7 +132,7 @@ const MainPage: FC = () => {
                                 <div className='not-list-null'>На этот день у вас нет уведомлений</div>
                                 :
                                 nowDay.map((item, index) => {
-                                    return <NotifyList key={index} name={item.name_to} med={item.name_medicine} time={item.time.split(' ')[1].slice(0, 5)}/>
+                                    return <NotifyList key={index} nowTime={time.toString().split(' ')[4].slice(0, 2)} name={item.name_to} med={item.name_medicine} time={item.time.split(' ')[1].slice(0, 5)}/>
                                 })
                         }
                     </div>

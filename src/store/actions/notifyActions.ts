@@ -1,7 +1,8 @@
 import {medActionCodeError, medActionLoading, medActionOneMedApi} from "../reducers/medReducer/medReducer";
-import {apiUrl} from "../store";
+import {localUrl} from "../store";
 import axios from "axios";
 import {notifyActionNotList, notifyActionNullNotList, notifyActionTime} from "../reducers/notifyReducer/notifyReducer";
+import {authActionLoading} from "../reducers/authReducer/authReducer";
 
 export const addNotify = (data) => {
     return async (dispatch) => {
@@ -9,7 +10,7 @@ export const addNotify = (data) => {
             dispatch(medActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/add/notification',
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -18,7 +19,7 @@ export const addNotify = (data) => {
             });
 
             const list = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -47,7 +48,9 @@ export const getTime = () => {
                 headers: {"Content-Type": "application/json"},
             });
 
-            dispatch(notifyActionTime(new Date(time.data.utc_datetime)))
+            const now = new Date(time.data.utc_datetime)
+
+            dispatch(notifyActionTime(now))
 
             return true
         } catch (error) {
@@ -59,10 +62,10 @@ export const getTime = () => {
 export const getNotify = () => {
     return async (dispatch) => {
         try {
-            dispatch(medActionLoading(true));
+            dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -76,7 +79,7 @@ export const getNotify = () => {
             return false;
         }
         finally {
-            dispatch(medActionLoading(false))
+            dispatch(authActionLoading(false))
         }
     }
 }
@@ -84,10 +87,10 @@ export const getNotify = () => {
 export const removeNotify = (id) => {
     return async (dispatch) => {
         try {
-            dispatch(medActionLoading(true));
+            dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/remove/notification',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -98,7 +101,7 @@ export const removeNotify = (id) => {
             });
 
             const list = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/notifications ',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -113,9 +116,8 @@ export const removeNotify = (id) => {
             return false;
         }
         finally {
-            dispatch(medActionLoading(false))
+            dispatch(authActionLoading(false))
         }
     }
 }
 
-//api/v1/remove/notification

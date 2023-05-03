@@ -17,7 +17,7 @@
 
 .first-item-list {
 	display: flex;
-	width: 85%;
+	width: 75%;
 }
 
 .not-list-button {
@@ -27,7 +27,7 @@
 }
 
 .accept-med {
-	width: 40%;
+	width: 100%;
 	font-weight: lighter;
 	height: 40px;
 	font-family: GT Eesti Pro Display, arial, sans-serif;
@@ -55,36 +55,6 @@
 	background: var(--font-submit-color);;
 }
 
-.not-accept-med {
-	margin-left: 20px;
-	width: 40%;
-	font-weight: lighter;
-	height: 40px;
-	font-family: GT Eesti Pro Display, arial, sans-serif;
-	color: var(--font-error-color);
-	font-size: 20px;
-	cursor: pointer;
-	background: transparent;
-	mix-blend-mode: normal;
-	border-radius: 10px;
-	border: 2px var(--font-error-color) solid;
-	transition: transform 0.1s ease-out, background-color 0.15s linear;
-}
-
-@mixin transform($scale) {
-	-webkit-transform: $scale;
-	transform: $scale;
-}
-
-.not-accept-med:active {
-	@include transform(scale(0.94));
-}
-
-.not-accept-med:hover {
-	color: white;
-	background: var(--font-error-color);;
-}
-
 .not-list-name {
 	margin-left: 5px;
 	overflow: hidden;
@@ -95,6 +65,7 @@
 }
 
 .not-list-med {
+	transition: all 0.5s;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 20%;
@@ -102,6 +73,7 @@
 }
 
 .not-list-time {
+	transition: all 0.5s;
 	margin-left: 5px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -134,14 +106,46 @@
 	font-size: 22px;
 }
 
+.accept-input {
+	opacity: 1;
+	transition: all 0.5s;
+	width: 100%;
+	font-weight: lighter;
+	height: 40px;
+	font-family: GT Eesti Pro Display, arial, sans-serif;
+	font-size: 20px;
+	background: transparent;
+	mix-blend-mode: normal;
+	border-bottom: 2px var(--font-submit-color) solid;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	padding-right: 10px;
+	outline:none;
+}
+
+.accept-input::placeholder {
+	font-size: 20px;
+}
+
+.accept-input-hidden {
+	opacity: 0;
+	position: absolute;
+	left: -99999px;
+}
+
+.accept-container {
+	color: green;
+}
+
+.remain-container {
+	color: red;
+}
+
 @media (min-width: 1150px) and (max-width: 1400px) {
 	.cross-icon-notify {
 		width: 37px;
 		height: 37px;
-	}
-
-	.accept-med {
-		width: 50%;
 	}
 
 	.not-list-container {
@@ -157,7 +161,14 @@
 
 	.accept-med {
 		height: 30px;
-		width: 50%;
+		font-size: 16px;
+	}
+
+	.accept-input::placeholder {
+		font-size: 16px;
+	}
+
+	.accept-input {
 		font-size: 16px;
 	}
 
@@ -191,7 +202,6 @@
 
 	.accept-med {
 		height: 30px;
-		width: 60%;
 		font-size: 16px;
 	}
 
@@ -213,6 +223,14 @@
 		font-size: 16px;
 	}
 
+	.accept-input {
+		font-size: 16px;
+	}
+
+	.accept-input::placeholder {
+		font-size: 16px;
+	}
+
 	.not-list-container {
 		padding-right: 35px;
 		height: 50px;
@@ -228,7 +246,14 @@
 
 	.accept-med {
 		height: 30px;
-		width: 100%;
+		font-size: 14px;
+	}
+
+	.accept-input::placeholder {
+		font-size: 14px;
+	}
+
+	.accept-input {
 		font-size: 14px;
 	}
 
@@ -236,6 +261,10 @@
 		margin-left: 0;
 		width: 40%;
 		font-size: 14px;
+	}
+
+	.not-list-button {
+		width: 30%;
 	}
 
 	.not-list-null {
@@ -258,6 +287,7 @@
 	}
 
 	.first-item-list {
+		width: 70%;
 		flex-wrap: wrap;
 	}
 }

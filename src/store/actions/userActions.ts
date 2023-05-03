@@ -1,5 +1,5 @@
 import axios from "axios";
-import {apiUrl} from "../store";
+import {apiUrl, localUrl} from "../store";
 import {authActionAuth, authActionError, authActionLoading} from "../reducers/authReducer/authReducer";
 import {
     userActionAdult,
@@ -8,6 +8,8 @@ import {
     userActionPhoto, userActionProfLoadinglList,
     userActionSurname
 } from "../reducers/userReducer/userReducer";
+import {medActionNullMedList} from "../reducers/medReducer/medReducer";
+import {notifyActionNullNotList} from "../reducers/notifyReducer/notifyReducer";
 
 export const registration = (user) => {
     return async (dispatch) => {
@@ -15,7 +17,7 @@ export const registration = (user) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                    baseURL: apiUrl,
+                    baseURL: localUrl,
                     url: '/signup',
                     method: 'POST',
                     data: user,
@@ -44,7 +46,7 @@ export const login = (user) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/login',
                 method: 'POST',
                 data: user,
@@ -77,7 +79,7 @@ export const changeProfile = (data) => {
             dispatch(authActionLoading(true));
 
             const token = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/csrf',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -86,7 +88,7 @@ export const changeProfile = (data) => {
 
             if (token.data.status === 200) {
                 const res = await axios({
-                    baseURL: apiUrl,
+                    baseURL: localUrl,
                     url: '/edit',
                     method: 'PUT',
                     headers: {
@@ -101,7 +103,7 @@ export const changeProfile = (data) => {
                     dispatch(userActionName(data.name));
 
                     const resFamily = await axios({
-                        baseURL: apiUrl,
+                        baseURL: localUrl,
                         url: '/family',
                         method: 'GET',
                         headers: {"Content-Type": "application/json"},
@@ -142,7 +144,7 @@ export const changeAvatar = (avatar, photo) => {
             dispatch(authActionLoading(true));
 
             const token = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/csrf',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -151,7 +153,7 @@ export const changeAvatar = (avatar, photo) => {
 
             if (token.data.status === 200) {
                 const res = await axios({
-                    baseURL: apiUrl,
+                    baseURL: localUrl,
                     url: '/avatar',
                     method: 'PUT',
                     headers: {
@@ -165,7 +167,7 @@ export const changeAvatar = (avatar, photo) => {
                 dispatch(userActionPhoto(photo));
 
                 const resFamily = await axios({
-                    baseURL: apiUrl,
+                    baseURL: localUrl,
                     url: '/family',
                     method: 'GET',
                     headers: {"Content-Type": "application/json"},
@@ -202,7 +204,7 @@ export const loadingProfile = (profile?) => {
 
 
             const resProfile = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/profile',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -210,7 +212,7 @@ export const loadingProfile = (profile?) => {
             });
 
             const resFamily = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/family',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -265,7 +267,7 @@ export const createFamily = () => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/create',
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -273,7 +275,7 @@ export const createFamily = () => {
             });
 
             const resFamily = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/family',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -298,7 +300,7 @@ export const deleteFamilyServer = () => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/delete',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -323,7 +325,7 @@ export const addPersonFamily = (data) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/add',
                 method: 'POST',
                 headers: {"Content-Type": "multipart/form-data"},
@@ -332,7 +334,7 @@ export const addPersonFamily = (data) => {
             });
 
             const resFamily = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/family',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -356,7 +358,7 @@ export const invitePersonFamily = (data) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/invite',
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -379,7 +381,7 @@ export const deletePersonFamilyNoUser = (data) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/remove/member',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -388,7 +390,7 @@ export const deletePersonFamilyNoUser = (data) => {
             });
 
             const resFamily = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/family',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -416,7 +418,7 @@ export const deletePersonFamilyUser = (id) => {
             dispatch(authActionLoading(true));
 
             const res = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/remove/user',
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
@@ -427,7 +429,7 @@ export const deletePersonFamilyUser = (id) => {
             });
 
             const resFamily = await axios({
-                baseURL: apiUrl,
+                baseURL: localUrl,
                 url: '/family',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
@@ -435,6 +437,8 @@ export const deletePersonFamilyUser = (id) => {
             });
 
             dispatch(userActionNullList([]));
+            dispatch(medActionNullMedList([]));
+            dispatch(notifyActionNullNotList([]));
 
             resFamily.data.members.forEach((item) => {
                 dispatch(userActionList(item))
