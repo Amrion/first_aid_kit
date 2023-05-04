@@ -152,7 +152,7 @@
 	position: fixed;
 	height: 60px;
 	width: 100vw;
-	box-shadow: 0 10px 10px -3px rgb(0 0 0 / 37%);
+	box-shadow: 0 10px 10px -3px rgb(0 0 0 / 17%);
 	background-color: var(--back-color);
 	padding-left: 15px;
 	padding-right: 15px;
@@ -436,36 +436,60 @@
 	}
 
 	.first-icon {
-		width: 40px;
-		height: 40px;
+		width: 30px;
+		height: 30px;
 	}
 
 	.second-icon {
-		width: 40px;
-		height: 40px;
+		width: 30px;
+		height: 30px;
 	}
 
 	.third-icon {
-		width: 40px;
-		height: 40px;
+		width: 30px;
+		height: 30px;
 	}
 
 	.fourth-icon {
-		width: 40px;
-		height: 40px;
+		width: 30px;
+		height: 30px;
 	}
 
 	.exit-svg {
-		width: 35px;
-		height: 35px;
+		width: 30px;
+		height: 30px;
 	}
 
 	.navbar__icons {
-		width: 40%;
+		height: 50%;
 	}
 
 	.navbar__exit {
 		width: 40%;
+	}
+
+	.first-icon-bag {
+		width: 60px;
+		height: 60px;
+		margin-bottom: 20px;
+	}
+
+	.second-icon-bag {
+		width: 60px;
+		height: 60px;
+		margin-bottom: 20px;
+	}
+
+	.third-icon-bag {
+		width: 60px;
+		height: 60px;
+		margin-bottom: 20px;
+	}
+
+	.fourth-icon-bag {
+		width: 60px;
+		height: 60px;
+		margin-bottom: 20px;
 	}
 
 	.navbar-side-mobile {
