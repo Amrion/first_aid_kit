@@ -31,9 +31,11 @@
 }
 
 .logo-main {
+	background-size: cover;
+	background-position: center;
 	cursor: pointer;
-	height: 90px;
-	width: 90px;
+	height: 80px;
+	width: 80px;
 	fill: var(--second-color);
 }
 
@@ -246,8 +248,8 @@
 	}
 
 	.logo-main {
-		width: 65px;
-		height: 65px;
+		width: 60px;
+		height: 60px;
 	}
 
 	.navbar__icons {
@@ -318,8 +320,8 @@
 	}
 
 	.logo-main {
-		width: 65px;
-		height: 65px;
+		width: 60px;
+		height: 60px;
 	}
 
 	.navbar__icons {
@@ -390,8 +392,8 @@
 	}
 
 	.logo-main {
-		width: 65px;
-		height: 65px;
+		width: 60px;
+		height: 60px;
 	}
 
 	.navbar__icons {
@@ -410,8 +412,8 @@
 	}
 
 	.logo-main {
-		width: 65px;
-		height: 65px;
+		width: 60px;
+		height: 60px;
 	}
 
 	.navbar-hidden {
