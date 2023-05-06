@@ -167,9 +167,10 @@ const AddMedPage: FC = () => {
 
         let formData = new FormData();
 
-        if (avatar === '') {
+        if (avatar !== '') {
             formData.append('file', avatar);
         }
+
         formData.append('name', name);
 
         if (checkFirst) {
