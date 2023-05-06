@@ -30,7 +30,7 @@ export const addNotify = (data) => {
             dispatch(notifyActionNullNotList([]))
 
             const time = await axios({
-                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                baseURL: 'https://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
             });
@@ -62,7 +62,7 @@ export const getTime = () => {
     return async (dispatch) => {
         try {
             const time = await axios({
-                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                baseURL: 'https://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
             });
@@ -92,7 +92,7 @@ export const getNotify = () => {
             });
 
             const time = await axios({
-                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                baseURL: 'https://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
             });
@@ -149,7 +149,7 @@ export const removeNotify = (id) => {
             dispatch(notifyActionNullNotList([]))
 
             const time = await axios({
-                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                baseURL: 'https://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
             });
@@ -213,7 +213,7 @@ export const acceptNotify = (data) => {
             });
 
             const time = await axios({
-                baseURL: 'http://worldtimeapi.org/api/timezone/Europe/London',
+                baseURL: 'https://worldtimeapi.org/api/timezone/Europe/London',
                 method: 'GET',
                 headers: {"Content-Type": "application/json"},
             });
