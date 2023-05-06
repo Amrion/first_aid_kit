@@ -60,6 +60,6 @@ module.exports = {
             inject: 'body',
         }),
         new MiniCssExtractPlugin(),
-        new FaviconsWebpackPlugin('./public/static/favicon.ico'),
+        new FaviconsWebpackPlugin('./src/styles/favicon.webp'),
     ],
 };
