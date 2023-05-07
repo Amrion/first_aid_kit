@@ -127,6 +127,12 @@ const AddFamilyPage: FC = () => {
                 return
             }
 
+            if (res === 400) {
+                setSubmitError('Поддерживается только jpg и png');
+
+                return;
+            }
+
             nav('/profile');
 
             return
@@ -138,12 +144,6 @@ const AddFamilyPage: FC = () => {
             setSubmitError('Упс... Попробуйте позже');
 
             return
-        }
-
-        if (res === 400) {
-            setSubmitError('Поддерживается только jpg и png');
-
-            return;
         }
 
         nav('/profile');
