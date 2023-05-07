@@ -29,7 +29,7 @@ const AddFamilyPage: FC = () => {
     const [valueName, setValueName] = useState<string>('');
     const [classErrorName, setClassErrorName] = useState<string>('');
 
-    const [myPhoto, setMyPhoto] = useState('http://95.163.250.125:9000/avatars/default_avatar.webp');
+    const [myPhoto, setMyPhoto] = useState('https://myaidkit.ru/api/v1/minio/avatars/default_avatar.webp');
     const [avatar, setAvatar] = useState('');
 
     const elemName = useRef<HTMLDivElement>();
@@ -138,6 +138,12 @@ const AddFamilyPage: FC = () => {
             setSubmitError('Упс... Попробуйте позже');
 
             return
+        }
+
+        if (res === 400) {
+            setSubmitError('Поддерживается только jpg и png');
+
+            return;
         }
 
         nav('/profile');

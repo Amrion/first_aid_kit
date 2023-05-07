@@ -71,8 +71,6 @@ const SearchInHeader: FC = () => {
 
     useEffect(() => {
         if (oneMedApi.hasOwnProperty('id')) {
-            console.log(1)
-
             refPopUpMed.current.classList.add('popUp-container-active');
             refPopUpBodyMed.current.classList.add('popUp-active');
 

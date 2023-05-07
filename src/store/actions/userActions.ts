@@ -341,6 +341,13 @@ export const addPersonFamily = (data) => {
 
             return true
         } catch (error) {
+            if (error.response !== undefined) {
+                if (error.response.data.message === 'File type is not supported') {
+
+                    return 400
+                }
+            }
+
             return false;
         } finally {
             dispatch(authActionLoading(false));

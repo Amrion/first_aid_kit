@@ -39,7 +39,7 @@ const MainPage: FC = () => {
     const nav = useNavigate();
 
     const {isAuth, isLoading} = useAppSelector(state => state.auth);
-    const {notList, time} = useAppSelector(state => state.notify);
+    const {notList} = useAppSelector(state => state.notify);
     const dispatch = useAppDispatch();
 
     const [error500, setError500] = useState(false);
@@ -48,23 +48,25 @@ const MainPage: FC = () => {
 
     const [timeCheck, setTimeCheck] = useState(false);
 
+    const time = new Date();
+
     useEffect(() => {
         title.innerText = 'Главная страница';
 
-        if (!isAuth) {
-            dispatch(loadingProfile())
-                .then((res) => {
-                    if (res === 401) {
-                        nav('/login');
-                    }
-
-                    if (res === 500) {
-                        setError500(true);
-                    }
-                });
-        }
-
-        dispatch(getNotify())
+        // if (!isAuth) {
+        //     dispatch(loadingProfile())
+        //         .then((res) => {
+        //             if (res === 401) {
+        //                 nav('/login');
+        //             }
+        //
+        //             if (res === 500) {
+        //                 setError500(true);
+        //             }
+        //         });
+        // }
+        //
+        // dispatch(getNotify())
 
         return () => {
             title.innerText = 'My Aid Kit';
@@ -72,7 +74,7 @@ const MainPage: FC = () => {
     }, [])
 
     useEffect(() => {
-        if (time !== '' && !timeCheck) {
+        if (time.toString() !== '' && !timeCheck) {
             setValue(`${days[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`)
             setTimeCheck(true);
         }
@@ -87,7 +89,7 @@ const MainPage: FC = () => {
         setNowDay(newArr.sort((a, b) => {
             return Number(a.time.split(' ')[1].slice(0, 2)) - Number(b.time.split(' ')[1].slice(0, 2));
         }))
-    }, [value, notList, time])
+    }, [value, notList])
 
     return (
         isLoading
@@ -102,7 +104,7 @@ const MainPage: FC = () => {
                         Ваши записи приема лекарств на
                         <select onChange={(e) => setValue(e.target.value)} value={value} className='select'>
                             {
-                                time === ''
+                                time.toString() === ''
                                     ?
                                     <>
                                     </>

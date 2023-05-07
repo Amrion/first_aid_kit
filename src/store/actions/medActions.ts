@@ -30,8 +30,6 @@ export const addOneMed = (data) => {
                 withCredentials: true
             });
 
-            console.log(list)
-
             dispatch(medActionMedList(list.data.medicines[list.data.medicines.length - 1]));
 
             return true
@@ -42,8 +40,6 @@ export const addOneMed = (data) => {
                     return 400
                 }
             }
-
-            console.log(error)
 
             return false;
         } finally {

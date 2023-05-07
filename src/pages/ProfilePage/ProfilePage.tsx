@@ -265,28 +265,28 @@ const ProfilePage: FC = () => {
                                                 ?
                                                 <MiniLoader/>
                                                 :
-                                                'Создать семью'
+                                                'Создать данные о семье'
                                         } </MyButton>
                                         <MyButton size='small-desktop-log' submit={submit}  width='100%' height='45px' fontSize='20px' margin='0 0 0 0'> {
                                             (isLoading && checkClick)
                                                 ?
                                                 <MiniLoader/>
                                                 :
-                                                'Создать семью'
+                                                'Создать данные о семье'
                                         }</MyButton>
                                         <MyButton size='ipad-log' submit={submit}  width='100%' height='40px' fontSize='18px' margin='0 0 0 0'> {
                                             (isLoading && checkClick)
                                                 ?
                                                 <MiniLoader/>
                                                 :
-                                                'Создать семью'
+                                                'Создать данные о семье'
                                         } </MyButton>
                                         <MyButton size='mobile-log' submit={submit}  width='100%' height='35px' fontSize='16px' margin='0 0 0 0'> {
                                             (isLoading && checkClick)
                                                 ?
                                                 <MiniLoader/>
                                                 :
-                                                'Создать семью'
+                                                'Создать данные о семье'
                                         } </MyButton>
                                     </>
                                 :
@@ -359,7 +359,7 @@ const ProfilePage: FC = () => {
                                                         </div>
                                                     </>
                                                 }
-                                                <button onClick={openPopUpSec} className='delete-btn-popup delete-family'>Удалить семью </button>
+                                                <button onClick={openPopUpSec} className='delete-btn-popup delete-family'>Удалить данные о семье</button>
                                             </>
                                         }
                                     </>

@@ -139,7 +139,9 @@ const NotifyPage: FC = () => {
     }
 
     const selectFirstTime = (e) => {
-        setFirstTime(e.target.value);
+        if (e.target.value.toString().slice(3) === '00') {
+            setFirstTime(e.target.value);
+        }
 
         if (refFirstTime.current.classList.length === 2) {
             refError.current.classList.remove('error-active');
@@ -148,7 +150,22 @@ const NotifyPage: FC = () => {
     }
 
     const selectKolRep = (e) => {
-        if (Number(e.target.value) > 5) {
+        if (Number(e.target.value) === 0) {
+            refTimeRep.current.classList.add('not-med-row-hidden');
+            setKolRep('');
+
+            return;
+        }
+
+        if (Number(e.target.value) > 6) {
+            return;
+        }
+
+        if (Number(e.target.value) < 1) {
+            return;
+        }
+
+        if (e.target.value.toUpperCase() !== e.target.value.toLowerCase() || e.target.value === '-') {
             return;
         }
 
@@ -159,19 +176,21 @@ const NotifyPage: FC = () => {
             refRepInput.current.classList.remove('input-med-error');
         }
 
-        if (Number(e.target.value) > 0) {
+        if (Number(e.target.value) > 1) {
             refTimeRep.current.classList.remove('not-med-row-hidden');
 
             return
         }
 
-        if (Number(e.target.value) === 0) {
+        if (Number(e.target.value) === 1) {
             refTimeRep.current.classList.add('not-med-row-hidden');
         }
     }
 
     const selectRepTime1 = (e) => {
-        setRepTime1(e.target.value)
+        if (e.target.value.toString().slice(3) === '00') {
+            setRepTime1(e.target.value)
+        }
 
         if (refRepTime1.current.classList.length === 3) {
             refError.current.classList.remove('error-active');
@@ -180,7 +199,9 @@ const NotifyPage: FC = () => {
     }
 
     const selectRepTime2 = (e) => {
-        setRepTime2(e.target.value)
+        if (e.target.value.toString().slice(3) === '00') {
+            setRepTime2(e.target.value)
+        }
 
         if (refRepTime2.current.classList.length === 3) {
             refError.current.classList.remove('error-active');
@@ -189,7 +210,9 @@ const NotifyPage: FC = () => {
     }
 
     const selectRepTime3 = (e) => {
-        setRepTime3(e.target.value)
+        if (e.target.value.toString().slice(3) === '00') {
+            setRepTime3(e.target.value)
+        }
 
         if (refRepTime3.current.classList.length === 3) {
             refError.current.classList.remove('error-active');
@@ -198,7 +221,9 @@ const NotifyPage: FC = () => {
     }
 
     const selectRepTime4 = (e) => {
-        setRepTime4(e.target.value)
+        if (e.target.value.toString().slice(3) === '00') {
+            setRepTime4(e.target.value)
+        }
 
         if (refRepTime4.current.classList.length === 3) {
             refError.current.classList.remove('error-active');
@@ -207,7 +232,9 @@ const NotifyPage: FC = () => {
     }
 
     const selectRepTime5 = (e) => {
-        setRepTime5(e.target.value)
+        if (e.target.value.toString().slice(3) === '00') {
+            setRepTime5(e.target.value)
+        }
 
         if (refRepTime5.current.classList.length === 3) {
             refError.current.classList.remove('error-active');
@@ -276,13 +303,13 @@ const NotifyPage: FC = () => {
     const submit = async (e) => {
         e.preventDefault();
 
-        if (medNotList === 'Список лекарств') {
-            setSubmitError('Выберите лекарство из списка');
-            refHeadList.current.classList.add('head-of-list-error')
-            refError.current.classList.add('error-active');
-
-            return;
-        }
+        // if (medNotList === 'Список лекарств') {
+        //     setSubmitError('Выберите лекарство из списка');
+        //     refHeadList.current.classList.add('head-of-list-error')
+        //     refError.current.classList.add('error-active');
+        //
+        //     return;
+        // }
 
         if (profileList === 'Члены семьи') {
             setSubmitError('Выберите члена семьи из списка');
@@ -316,15 +343,15 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) < 0 || Number(kolRep) > 5) {
-            setSubmitError('Допускаются значение от 0 до 5');
+        if (Number(kolRep) < 1 || Number(kolRep) > 6) {
+            setSubmitError('Допускаются значение от 1 до 6');
             refRepInput.current.classList.add('input-med-error');
             refError.current.classList.add('error-active');
 
             return;
         }
 
-        if (Number(kolRep) === 1 && repTime1 === '') {
+        if (Number(kolRep) === 2 && repTime1 === '00:00') {
             setSubmitError('Введите время повторений приема');
             refRepTime1.current.classList.add('input-med-error');
             refError.current.classList.add('error-active');
@@ -332,7 +359,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 1 && repTime1.toString().slice(3) !== '00') {
+        if (Number(kolRep) === 3 && repTime1.toString().slice(3) !== '00') {
             setSubmitError('Только круглое время');
             refRepTime1.current.classList.add('input-med-error');
             refError.current.classList.add('error-active');
@@ -340,12 +367,12 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 2 && (repTime1 === '' || repTime2 === '')) {
+        if (Number(kolRep) === 3 && (repTime1 === '00:00' || repTime2 === '00:00')) {
             setSubmitError('Введите время повторений приема');
-            if (repTime1 === '') {
+            if (repTime1 === '00:00') {
                 refRepTime1.current.classList.add('input-med-error');
             }
-            if (repTime2 === '') {
+            if (repTime2 === '00:00') {
                 refRepTime2.current.classList.add('input-med-error');
             }
             refError.current.classList.add('error-active');
@@ -353,7 +380,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 2 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00')) {
+        if (Number(kolRep) === 3 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00')) {
             setSubmitError('Только круглое время');
             if (repTime1.toString().slice(3) !== '00') {
                 refRepTime1.current.classList.add('input-med-error');
@@ -366,15 +393,15 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 3 && (repTime1 === '' || repTime2 === '' || repTime3 === '')) {
+        if (Number(kolRep) === 4 && (repTime1 === '00:00' || repTime2 === '00:00' || repTime3 === '00:00')) {
             setSubmitError('Введите время повторений приема');
-            if (repTime1 === '') {
+            if (repTime1 === '00:00') {
                 refRepTime1.current.classList.add('input-med-error');
             }
-            if (repTime2 === '') {
+            if (repTime2 === '00:00') {
                 refRepTime2.current.classList.add('input-med-error');
             }
-            if (repTime3 === '') {
+            if (repTime3 === '00:00') {
                 refRepTime3.current.classList.add('input-med-error');
             }
             refError.current.classList.add('error-active');
@@ -382,7 +409,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 3 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00')) {
+        if (Number(kolRep) === 4 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00')) {
             setSubmitError('Только круглое время');
             if (repTime1.toString().slice(3) !== '00') {
                 refRepTime1.current.classList.add('input-med-error');
@@ -398,18 +425,18 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 4 && (repTime1 === '' || repTime2 === '' || repTime3 === '' || repTime4 === '')) {
+        if (Number(kolRep) === 5 && (repTime1 === '00:00' || repTime2 === '00:00' || repTime3 === '00:00' || repTime4 === '00:00')) {
             setSubmitError('Введите время повторений приема');
-            if (repTime1 === '') {
+            if (repTime1 === '00:00') {
                 refRepTime1.current.classList.add('input-med-error');
             }
-            if (repTime2 === '') {
+            if (repTime2 === '00:00') {
                 refRepTime2.current.classList.add('input-med-error');
             }
-            if (repTime3 === '') {
+            if (repTime3 === '00:00') {
                 refRepTime3.current.classList.add('input-med-error');
             }
-            if (repTime4 === '') {
+            if (repTime4 === '00:00') {
                 refRepTime4.current.classList.add('input-med-error');
             }
             refError.current.classList.add('error-active');
@@ -417,7 +444,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 4 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00' ||  repTime4.toString().slice(3) !== '00')) {
+        if (Number(kolRep) === 5 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00' ||  repTime4.toString().slice(3) !== '00')) {
             setSubmitError('Только круглое время');
             if (repTime1.toString().slice(3) !== '00') {
                 refRepTime1.current.classList.add('input-med-error');
@@ -436,21 +463,21 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 5 && (repTime1 === '' || repTime2 === '' || repTime3 === '' || repTime4 === '' || repTime5 === '')) {
+        if (Number(kolRep) === 6 && (repTime1 === '00:00' || repTime2 === '00:00' || repTime3 === '00:00' || repTime4 === '00:00' || repTime5 === '00:00')) {
             setSubmitError('Введите время повторений приема');
-            if (repTime1 === '') {
+            if (repTime1 === '00:00') {
                 refRepTime1.current.classList.add('input-med-error');
             }
-            if (repTime2 === '') {
+            if (repTime2 === '00:00') {
                 refRepTime2.current.classList.add('input-med-error');
             }
-            if (repTime3 === '') {
+            if (repTime3 === '00:00') {
                 refRepTime3.current.classList.add('input-med-error');
             }
-            if (repTime4 === '') {
+            if (repTime4 === '00:00') {
                 refRepTime4.current.classList.add('input-med-error');
             }
-            if (repTime5 === '') {
+            if (repTime5 === '00:00') {
                 refRepTime5.current.classList.add('input-med-error');
             }
             refError.current.classList.add('error-active');
@@ -458,7 +485,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 5 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00' ||  repTime4.toString().slice(3) !== '00' || repTime5.toString().slice(3) !== '00')) {
+        if (Number(kolRep) === 6 && (repTime1.toString().slice(3) !== '00' || repTime2.toString().slice(3) !== '00' || repTime3.toString().slice(3) !== '00' ||  repTime4.toString().slice(3) !== '00' || repTime5.toString().slice(3) !== '00')) {
             setSubmitError('Только круглое время');
             if (repTime1.toString().slice(3) !== '00') {
                 refRepTime1.current.classList.add('input-med-error');
@@ -514,11 +541,11 @@ const NotifyPage: FC = () => {
             count_days: Number(during),
         }))
 
-        if (Number(kolRep) === 0) {
+        if (Number(kolRep) === 1) {
             nav('/');
         }
 
-        if (Number(kolRep) === 1) {
+        if (Number(kolRep) === 2) {
             const res = await dispatch(addNotify({
                 name_medicine: medNotList,
                 id_medicine: idMed,
@@ -535,7 +562,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 2) {
+        if (Number(kolRep) === 3) {
             const res1 = await dispatch(addNotify({
                 name_medicine: medNotList,
                 id_medicine: idMed,
@@ -563,7 +590,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 3) {
+        if (Number(kolRep) === 4) {
             const res1 = await dispatch(addNotify({
                 name_medicine: medNotList,
                 id_medicine: idMed,
@@ -602,7 +629,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 4) {
+        if (Number(kolRep) === 5) {
             const res = await dispatch(addNotify({
                 name_medicine: medNotList,
                 id_medicine: idMed,
@@ -652,7 +679,7 @@ const NotifyPage: FC = () => {
             return;
         }
 
-        if (Number(kolRep) === 5) {
+        if (Number(kolRep) === 6) {
             const res = await dispatch(addNotify({
                 name_medicine: medNotList,
                 id_medicine: idMed,
@@ -804,18 +831,18 @@ const NotifyPage: FC = () => {
                     </div>
                     <div className="not-med-row">
                         <div className="not-med-row__first">
-                            Первое время приема в дне:
+                            Кол-во повторений в дне:
                         </div>
                         <div className="not-med-row__second">
-                            <input ref={refFirstTime} className='nod-med-input' value={firstTime} onChange={selectFirstTime} type='time'/>
+                            <input ref={refRepInput} className='nod-med-input' value={kolRep} placeholder='Число от 1 до 6' onChange={selectKolRep} type='text'/>
                         </div>
                     </div>
                     <div className="not-med-row">
                         <div className="not-med-row__first">
-                            Кол-во повторений в дне:
+                            Первое время приема в дне:
                         </div>
                         <div className="not-med-row__second">
-                            <input ref={refRepInput} className='nod-med-input' value={kolRep} placeholder='Число от 0 до 5' onChange={selectKolRep} type='text'/>
+                            <input ref={refFirstTime} className='nod-med-input' value={firstTime} onChange={selectFirstTime} type='time'/>
                         </div>
                     </div>
                     <div ref={refTimeRep} className="not-med-row not-med-row-hidden">
@@ -824,22 +851,14 @@ const NotifyPage: FC = () => {
                         </div>
                         <div className="not-med-row__second">
                             {
-                                Number(kolRep) === 1 &&
-                                <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
-                            }
-                            {
                                 Number(kolRep) === 2 &&
-                                <>
-                                    <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
-                                    <input ref={refRepTime2} className='nod-med-input rep-time' value={repTime2} onChange={selectRepTime2} type='time'/>
-                                </>
+                                <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
                             }
                             {
                                 Number(kolRep) === 3 &&
                                 <>
                                     <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
                                     <input ref={refRepTime2} className='nod-med-input rep-time' value={repTime2} onChange={selectRepTime2} type='time'/>
-                                    <input ref={refRepTime3} className='nod-med-input rep-time' value={repTime3} onChange={selectRepTime3} type='time'/>
                                 </>
                             }
                             {
@@ -848,11 +867,19 @@ const NotifyPage: FC = () => {
                                     <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
                                     <input ref={refRepTime2} className='nod-med-input rep-time' value={repTime2} onChange={selectRepTime2} type='time'/>
                                     <input ref={refRepTime3} className='nod-med-input rep-time' value={repTime3} onChange={selectRepTime3} type='time'/>
-                                    <input ref={refRepTime4} className='nod-med-input rep-time' value={repTime4} onChange={selectRepTime4} type='time'/>
                                 </>
                             }
                             {
                                 Number(kolRep) === 5 &&
+                                <>
+                                    <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
+                                    <input ref={refRepTime2} className='nod-med-input rep-time' value={repTime2} onChange={selectRepTime2} type='time'/>
+                                    <input ref={refRepTime3} className='nod-med-input rep-time' value={repTime3} onChange={selectRepTime3} type='time'/>
+                                    <input ref={refRepTime4} className='nod-med-input rep-time' value={repTime4} onChange={selectRepTime4} type='time'/>
+                                </>
+                            }
+                            {
+                                Number(kolRep) === 6 &&
                                 <>
                                     <input ref={refRepTime1} className='nod-med-input rep-time' value={repTime1} onChange={selectRepTime1} type='time'/>
                                     <input ref={refRepTime2} className='nod-med-input rep-time' value={repTime2} onChange={selectRepTime2} type='time'/>
@@ -865,7 +892,7 @@ const NotifyPage: FC = () => {
                     </div>
                     <div className="not-med-row">
                         <div className="not-med-row__first">
-                            Длительность курса:
+                            Длительность курса в днях:
                         </div>
                         <div className="not-med-row__second">
                             <input ref={refDuring} className='nod-med-input' value={during} placeholder='Любое число' onChange={selectDuring} type='text'/>

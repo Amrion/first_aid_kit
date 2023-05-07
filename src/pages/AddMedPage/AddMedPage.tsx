@@ -199,9 +199,7 @@ const AddMedPage: FC = () => {
             return;
         }
 
-        setSubmitError('Лекарство добавлено!');
-        refError.current.classList.add('error-active');
-        refError.current.classList.add('error-active-submit');
+        nav('/list');
     }
 
     const nav = useNavigate();

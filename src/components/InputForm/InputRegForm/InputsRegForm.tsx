@@ -367,6 +367,7 @@ const InputsRegForm: FC = () => {
         <>
             <div ref={refRegCon} className='form-container'>
                 <h1 className='log-h1'>Регистрация</h1>
+                <div className='conf-first' style={{marginBottom: 15}}>На почту придет подтверждение</div>
                 <form className='menu-form' method='post' action='/' noValidate encType='application/json'>
                     <MyInput elem={elemName}
                              active={classErrorName}
@@ -490,6 +491,7 @@ const InputsRegForm: FC = () => {
             <div ref={refLinkCon} className='conf-container conf-container-hidden'>
                 <div className='log-h1' style={{textAlign: 'center'}}> Подтвердите почту </div>
                 <div className='conf-first'> Перейдите по этой <span onClick={regLink} className='conf-a'> сслыке!</span> для заверщения регистрации</div>
+                <div className='conf-second'> Если письма нет, то проверьте спам!</div>
             </div>
         </>
     );
