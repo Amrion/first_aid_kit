@@ -53,20 +53,20 @@ const MainPage: FC = () => {
     useEffect(() => {
         title.innerText = 'Главная страница';
 
-        // if (!isAuth) {
-        //     dispatch(loadingProfile())
-        //         .then((res) => {
-        //             if (res === 401) {
-        //                 nav('/login');
-        //             }
-        //
-        //             if (res === 500) {
-        //                 setError500(true);
-        //             }
-        //         });
-        // }
-        //
-        // dispatch(getNotify())
+        if (!isAuth) {
+            dispatch(loadingProfile())
+                .then((res) => {
+                    if (res === 401) {
+                        nav('/login');
+                    }
+
+                    if (res === 500) {
+                        setError500(true);
+                    }
+                });
+        }
+
+        dispatch(getNotify())
 
         return () => {
             title.innerText = 'My Aid Kit';
