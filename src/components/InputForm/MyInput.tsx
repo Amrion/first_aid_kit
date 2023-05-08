@@ -1,4 +1,4 @@
-import React, {FC, MutableRefObject, ReactElement} from 'react';
+import React, {FC, MutableRefObject, ReactElement, useRef} from 'react';
 
 interface MyInputProps {
     placeholder: string,
@@ -29,6 +29,21 @@ const MyInput: FC<MyInputProps> = ({placeholder,
                                        max,
                                        change,
                                        disable = false}) => {
+    const refOpen = useRef<HTMLDivElement>();
+    const refClose = useRef<HTMLDivElement>();
+
+    const openPassword = (e) => {
+        e.target.previousSibling.type = 'text';
+        refOpen.current.classList.add('close-password-hidden');
+        refClose.current.classList.remove('close-password-hidden')
+    }
+
+    const closePassword = (e) => {
+        e.target.previousSibling.previousSibling.type = 'password';
+        refOpen.current.classList.remove('close-password-hidden');
+        refClose.current.classList.add('close-password-hidden')
+    }
+
     return (
         <div className='papa'>
             {
@@ -64,6 +79,13 @@ const MyInput: FC<MyInputProps> = ({placeholder,
                                placeholder={placeholder}
                                type={type}
                                required/>
+                        {
+                            type === 'password' &&
+                                <>
+                                    <div ref={refOpen} onClick={openPassword} className='see-password'></div>
+                                    <div ref={refClose} onClick={closePassword} className='close-password close-password-hidden'></div>
+                                </>
+                        }
                     </div>
             }
             <div className={['error', `${active}`].join(' ')}>{error}</div>
