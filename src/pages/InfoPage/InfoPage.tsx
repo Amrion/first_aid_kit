@@ -222,14 +222,14 @@ const InfoPage: FC = () => {
             </section>
             <section className='second-container'>
                 <div ref={secondRight} className="second-left">
-                    Устанавливай  <span className='info-import'>напоминание</span> на прием лекарств <br/> <br/> Указывай дозировки
+                    Устанавливай  <span className='info-import'>напоминание</span> на прием лекарств <br/> <br/> Вноси сколько лекарств вы приняли
                 </div>
                 <div ref={secondLeft} className='second-right'></div>
             </section>
             <section className='third-container'>
                 <div ref={thirdLeft} className='third-right'></div>
                 <div ref={thirdRight} className="third-left">
-                    <span className='info-import'>Сфоткай</span> штрих-код лекарства для быстрого поиска <span className='info-import-second '> конкретного </span> лекарства в поиске ВСЕХ препаратов РФ
+                    <span className='info-import'>Сфотографируй</span> штрих-код лекарства для быстрого поиска <span className='info-import-second '> конкретного </span> лекарства в поиске ВСЕХ препаратов РФ
                 </div>
             </section>
             <section className='fourth-container'>

@@ -41,8 +41,8 @@
 }
 
 .form-container {
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -105,7 +105,7 @@
 	font-size: 18px;
 	color: var(--font-error-color);
 	padding-top: 2px;
-	height: 30px;
+	height: 10px;
 	transition: all 0.5s linear;
 }
 
@@ -121,7 +121,7 @@
 .log-h1 {
 	margin-top: 0;
 	display: block;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 	font-size: 36px;
 }
 
